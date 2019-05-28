@@ -1,0 +1,155 @@
+{
+    "id": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e",
+    "name": "rnh_trigger_pull_buildandreleasetask",
+    "friendlyName": "Trigger ReleaseNotesHub Pull",
+    "description": "Trigger ReleaseNotesHub pull for release notes",
+    "helpUrl": "https://releasenoteshub-staging.azurewebsites.net/swagger",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "ReleaseNotesHub",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 15
+    },
+
+    "groups": [
+        {
+          "name": "versiongroup",
+          "displayName": "Release Version",
+          "isExpanded": false
+        }
+      ],       
+    "instanceNameFormat": "Trigger ReleaseNotesHub Pull",
+    "inputs": [
+        {
+          "name": "ReleaseNotesHubService",
+          "type": "connectedService:ReleaseNotesHub",
+          "label": "ReleaseNotesHub service/server end point",
+          "defaultValue": "",
+          "required": true,
+          "helpMarkDown": "Select the ReleaseNotesHub end point to use. If needed, click on 'manage', and add a new service endpoint of type 'ReleaseNotesHub'"
+        },
+        {
+          "name": "space",
+          "type": "pickList",
+          "label": "Space",
+          "required": true,
+          "helpMarkDown": "Select Space containing the RnHub Project. Spaces where you have at least Contributor access are displayed.",
+          "properties": {
+            "EditableOptions": "True"
+          }
+        },
+        {
+            "name": "project",
+            "type": "pickList",
+            "label": "Project",
+            "required": true,
+            "helpMarkDown": "Select the Project.",
+            "properties": {
+              "EditableOptions": "True"
+            }
+        },
+        {
+            "name": "publish",
+            "type": "boolean",
+            "label": "Publish Release",
+            "defaultValue": "false",
+            "required": false,
+            "helpMarkDown": "Publish Release."
+        },  
+        {
+            "name": "release",
+            "type": "radio",
+            "label": "Release",
+            "required": true,
+            "defaultValue": "WithVersion",
+            "helpMarkDown": "Select Release.",
+            "options": {
+              "WithVersion": "Pull Release notes for Version.",
+              "LatestRelease": "Pull Release Notes for latest Release in 'Draft' status."
+            }
+        },             
+        {
+            "name": "majorVersion",
+            "type": "string",
+            "label": "Major Version",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Major Version for Release.",
+            "visibleRule": "release=WithVersion"
+          },     
+          {
+            "name": "minorVersion",
+            "type": "string",
+            "label": "Minor Version",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Minor Version for Release.",
+            "visibleRule": "release=WithVersion"
+          },  
+          {
+            "name": "buildVersion",
+            "type": "string",
+            "label": "Build",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Build for Release.",
+            "visibleRule": "release=WithVersion"
+          },     
+          {
+            "name": "revisionVersion",
+            "type": "string",
+            "label": "Revision",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Revision for Release.",
+            "visibleRule": "release=WithVersion"
+          },    
+          {
+            "name": "preReleaseLabel",
+            "type": "string",
+            "label": "Semantic Label",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Sematic pre-release Label.",
+            "visibleRule": "release=WithVersion"
+          },
+          {
+              "name": "createOnNotFound",
+              "type": "boolean",
+              "label": "Create Release if not found",
+              "defaultValue": "false",
+              "required": false,
+              "helpMarkDown": "Create Release with version if not found.",
+              "visibleRule": "release=WithVersion"
+          }                                    
+      ],
+      "dataSourceBindings": [        
+        {
+            "target": "space",
+            "endpointId": "$(ReleaseNotesHubService)",
+            "endpointUrl": "{{endpoint.url}}api/spaces/getbyspaceclaim/100?comparison=LessThanOrEqual&page={{page}}&pageSize=20",
+            "resultSelector": "jsonpath:$.results[*]",
+            "resultTemplate": "{ \"Value\" : \"{{{id}}}\", \"DisplayValue\" : \"{{{name}}}\" }",
+            "callbackContextTemplate": "{\"page\": \"{{add page 1}}\"}",
+            "callbackRequiredTemplate": "{{isEqualNumber result.count 20}}",
+            "initialContextTemplate": "{\"page\": \"1\"}"
+        },
+        {
+            "target": "project",
+            "endpointId": "$(ReleaseNotesHubService)",
+            "endpointUrl": "{{endpoint.url}}api/projects/getbyspace/$(space)?page={{page}}&pageSize=20",
+            "resultSelector": "jsonpath:$.results[*]",
+            "resultTemplate": "{ \"Value\" : \"{{{id}}}\", \"DisplayValue\" : \"{{{name}}}\" }",
+            "callbackContextTemplate": "{\"page\": \"{{add page 1}}\"}",
+            "callbackRequiredTemplate": "{{isEqualNumber result.count 20}}",
+            "initialContextTemplate": "{\"page\": \"1\"}"
+        }     
+      ],    
+    "execution": {
+        "Node": {
+            "target": "index.js"
+        }
+    }
+}

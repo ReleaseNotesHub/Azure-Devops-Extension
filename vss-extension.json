@@ -1,0 +1,109 @@
+{
+    "manifestVersion": 1,
+    "id": "rnh-buildandreleasetasks",
+    "name": "ReleaseNotesHub Build and Release Tasks",
+    "version": "0.0.15",
+    "publisher": "ReleaseNotesHub",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for building/releasing with ReleaseNotesHub. Includes one build/release task.",
+    "tags": [
+        "Notes",
+        "Release Notes",  
+        "ReleaseNotesHub",   
+        "DevOps", 
+        "Azure Pipelines",
+        "Azure DevOps Extensions",
+        "GitHub",
+        "Build",
+        "Release",
+        "Continuous Integration",
+        "Continuous Delivery",   
+        "Extension",
+        "Publish"
+      ],    
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/icon.png"        
+    },
+    "links": {
+        "repository": {
+          "uri": "https://releasenoteshub-staging.azurewebsites.net/swagger"
+        },
+        "issues": {
+          "uri": "https://releasenoteshub-staging.azurewebsites.net/swagger"
+        },
+        "support": {
+          "uri": "https://releasenoteshub-staging.azurewebsites.net/swagger"
+        }
+      }, 
+      "repository": {
+        "type": "git",
+        "uri": "https://github.com/thinkabouthub/Rnh"
+      },    
+      "branding": {
+        "color": "#F32894",
+        "theme": "light"
+    },              
+    "files": [
+        {
+            "path": "pullBuildAndReleaseTask"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "rnhub-service-endpoint",
+            "description": "Service endpoint type for ReleaseNoteHub connections",
+            "type": "ms.vss-endpoint.service-endpoint-type",
+            "targets": [ "ms.vss-endpoint.endpoint-types" ],
+            "properties": {
+              "name": "ReleaseNotesHub",
+              "displayName": "ReleaseNotesHub",
+              "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey {{endpoint.apitoken}}"
+                }
+              ],  
+              "url": {
+                "displayName": "Server Url",
+                "value": "https://releasenoteshub-staging.azurewebsites.net",
+                "helpText": "The ReleaseNotesHub server Url, .e.g. 'https://releasenoteshub-staging.azurewebsites.net'"
+              },       
+            "dataSources": [
+                {
+                  "name": "ReleaseNotesHub",
+                  "endpointUrl": "{{endpoint.url}}api/spaces/getbycurrentuser",
+                  "resultSelector": "jsonpath:$.results[*]"
+                }
+      
+              ],
+              "authenticationSchemes": [
+                {
+                  "type": "ms.vss-endpoint.endpoint-auth-scheme-token"
+                }
+              ],
+              "helpMarkDown": "<a href=\"url-to-documentation\" target=\"_blank\"><b>Learn More</b></a>"
+            },
+            "icons": {
+                "default": "images/icon.png",
+                "large": "images/icon.png"
+            }
+        },        
+        {
+            "id": "rnh_trigger_pull_buildandreleasetask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "pullBuildAndReleaseTask"
+            }
+        }        
+    ]
+}
