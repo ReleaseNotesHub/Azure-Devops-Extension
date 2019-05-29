@@ -2,14 +2,14 @@
     "manifestVersion": 1,
     "id": "rnh-buildandreleasetasks",
     "name": "ReleaseNotesHub Build and Release Tasks",
-    "version": "0.0.15",
+    "version": "0.0.18",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Tools for building/releasing with ReleaseNotesHub. Includes one build/release task.",
+    "description": "Tools for building/releasing with ReleaseNotesHub. Includes build/release task.",
     "tags": [
         "Notes",
         "Release Notes",  
