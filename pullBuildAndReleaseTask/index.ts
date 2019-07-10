@@ -1,72 +1,26 @@
 import tl = require('azure-pipelines-task-lib/task');
+import httpc = require('typed-rest-client/HttpClient');
 
 async function run() {
     try {
-        const serviceString: string = tl.getInput('ReleaseNotesHubService', true);
-        if (serviceString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
+        let serviceString: string = tl.getInput('ReleaseNotesHubService', true);
+        let spaceString: string = tl.getInput('space', true);
+        let projectString: string = tl.getInput('project', true);
+        let publishString: string = tl.getInput('publish', true);
+        let releaseString: string = tl.getInput('release', true);
+        let majorVersionString: string = tl.getInput('majorVersion', true);
+        let minorVersionString: string = tl.getInput('minorVersion', true);
+        let buildVersionString: string = tl.getInput('buildVersion', true);
+        let revisionVersionString: string = tl.getInput('revisionVersion', false);
+        let preReleaseLabelString: string = tl.getInput('preReleaseLabel', false);
+        let createOnNotFoundString: string = tl.getInput('createOnNotFound', true);
+        var endPointUrlString = tl.getEndpointUrl(serviceString, true);
+        var endPointAuth = tl.getEndpointAuthorization(serviceString, true);
+        var endPointApiKey = endPointAuth.parameters["apitoken"];
 
-        const spaceString: string = tl.getInput('space', true);
-        if (spaceString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const projectString: string = tl.getInput('project', true);
-        if (projectString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const publishString: string = tl.getInput('publish', true);
-        if (publishString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const releaseString: string = tl.getInput('release', true);
-        if (releaseString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const majorVersionString: string = tl.getInput('majorVersion', true);
-        if (majorVersionString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const minorVersionString: string = tl.getInput('minorVersion', true);
-        if (minorVersionString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const buildVersionString: string = tl.getInput('buildVersion', true);
-        if (buildVersionString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const revisionVersionString: string = tl.getInput('revisionVersion', false);
-        if (revisionVersionString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const preReleaseLabelString: string = tl.getInput('preReleaseLabel', false);
-        if (preReleaseLabelString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
-
-        const createOnNotFoundString: string = tl.getInput('createOnNotFound', true);
-        if (createOnNotFoundString == 'bad') {
-            tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-            return;
-        }
+        let debugOutput = tl.getVariable("system.debug");
+        debugOutput = debugOutput || "false";
+        let isDebugOutput: boolean  = debugOutput.toLowerCase() === "true";
 
         console.log('serviceString', serviceString);      
         console.log('spaceString', spaceString);        
@@ -78,6 +32,33 @@ async function run() {
         console.log('revisionVersionString', revisionVersionString);
         console.log('preReleaseLabelString', preReleaseLabelString);
         console.log('createOnNotFoundString', createOnNotFoundString);  
+        console.log('isDebugOutput', isDebugOutput);   
+
+        console.log('endPointUrlString', endPointUrlString);  
+        console.log('endPointApiKey', endPointApiKey);  
+
+        for (let key in endPointAuth.parameters) {
+            let value = endPointAuth.parameters[key];
+            console.log(key, value);   
+        }   
+        
+        let httpClient: httpc.HttpClient = new httpc.HttpClient('ReleaseNotesHub', []);
+
+        let url: string  = endPointUrlString + "api/pullrevisions/PullLatestRelease/" + projectString
+        let data: string = "{}";
+
+        console.log('url', url);  
+        console.log('data', data);  
+
+        let result = await httpClient.post(url, data, {
+            'Accept': 'application/json',
+            'Authorization': 'ApiKey ' + endPointApiKey
+        });
+
+        let body: string = await result.readBody(); 
+        let obj:any = JSON.parse(body);
+
+        console.log(obj);        
     }
     catch (err) {
         tl.setResult(tl.TaskResult.Failed, err.message);

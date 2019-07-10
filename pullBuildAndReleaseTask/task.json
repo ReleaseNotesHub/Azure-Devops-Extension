@@ -3,14 +3,14 @@
     "name": "rnh_trigger_pull_buildandreleasetask",
     "friendlyName": "Trigger ReleaseNotesHub Pull",
     "description": "Trigger ReleaseNotesHub pull for release notes",
-    "helpUrl": "https://releasenoteshub-staging.azurewebsites.net/swagger",
+    "helpUrl": "https://stg-rnh-api-as.azurewebsites.net/swagger",
     "helpMarkDown": "",
     "category": "Utility",
     "author": "ReleaseNotesHub",
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 18
+        "Patch": 25
     },
 
     "groups": [

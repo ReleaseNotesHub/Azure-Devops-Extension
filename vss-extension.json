@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "rnh-buildandreleasetasks",
     "name": "ReleaseNotesHub Build and Release Tasks",
-    "version": "0.0.18",
+    "version": "0.0.25",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
@@ -33,13 +33,13 @@
     },
     "links": {
         "repository": {
-          "uri": "https://releasenoteshub-staging.azurewebsites.net/swagger"
+          "uri": "https://stg-rnh-api-as.azurewebsites.net/swagger"
         },
         "issues": {
-          "uri": "https://releasenoteshub-staging.azurewebsites.net/swagger"
+          "uri": "https://stg-rnh-api-as.azurewebsites.net/swagger"
         },
         "support": {
-          "uri": "https://releasenoteshub-staging.azurewebsites.net/swagger"
+          "uri": "https://stg-rnh-api-as.azurewebsites.net/swagger"
         }
       }, 
       "repository": {
@@ -72,8 +72,8 @@
               ],  
               "url": {
                 "displayName": "Server Url",
-                "value": "https://releasenoteshub-staging.azurewebsites.net",
-                "helpText": "The ReleaseNotesHub server Url, .e.g. 'https://releasenoteshub-staging.azurewebsites.net'"
+                "value": "https://stg-rnh-api-as.azurewebsites.net",
+                "helpText": "The ReleaseNotesHub server Url, .e.g. 'https://stg-rnh-api-as.azurewebsites.net'"
               },       
             "dataSources": [
                 {

@@ -1,11 +1,11 @@
 {
   "name": "rnh_trigger_pull_buildandreleasetask",
-  "version": "0.0.18",
+  "version": "0.0.25",
   "description": "Trigger ReleaseNotesHub pull for release notes",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc":"tsc -p tsconfig.json"
+    "tsc": "tsc -p tsconfig.json"
   },
   "keywords": [
     "ReleaseNotesHub",
@@ -15,7 +15,10 @@
   "author": "ReleaseNotesHub",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^2.8.0"
+    "azure-pipelines-task-lib": "^2.8.0",
+    "tfx-cli": "^0.7.8",
+    "typed-rest-client": "^1.5.0",
+    "typescript": "^3.5.2"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
