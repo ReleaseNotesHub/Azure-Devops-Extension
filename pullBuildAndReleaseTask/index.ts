@@ -162,113 +162,58 @@ async function runWithVersionVariable() {
     if (versionNumberValues.length >= 3) data += ",\"versionBuild\":" + versionNumberValues[2];
     if (versionNumberValues.length >= 4) data += ",\"versionRevision\":" + versionNumberValues[3];
     if (versionLabel !== null) {
-        data += ",\"preReleaseLabel\":" + publishValue;
+        data += ",\"preReleaseLabel\": \"" + versionLabel + "\"";
     }
     data += ",\"name\": \"" + releaseNameValue + "\"";
     if (releaseDescriptionValue !== null) {
         data += ",\"description\": \"" + releaseDescriptionValue + "\"";
     }
     data += ",\"publish\":" + publishValue;
-    data += ",\"createOnNotFound\":" + publishValue + "}";
+    data += ",\"createOnNotFound\":" + createOnNotFoundValue + "}";
     await runHttpPost(url, data);
-}
-
-function isValidVersion(version: string): boolean
-{
-    var versionExp = new RegExp(testVersionFormatExpression);
-    return versionExp.test(version);
-}
-
-function isVersionNumeric(version: string[]): boolean
-{
-    for (var value in version)
-    {
-        if (!isNumber(value)) return false;
-    }
-    return true
-}
-
-function isNumber(value: string | number): boolean
-{
-   return ((value !== null) && !isNaN(Number(value.toString())));
 }
 
 async function runWithVersion() {
     if (isDebugOutput){
         console.log('Executing RnHub Release Pull using Version.');
     }
-
-    if (isDebugOutput){
-        console.log('Executing RnHub Release Pull using BuildNumber.');
-    }
     if (releaseNameValue == null) {
         throw new Error("Release Name not set. This is a required value.");
     }
-    if (versionNumberValue == null) {
-        throw new Error("Version Number not set. This is a required value.");
+    if (majorVersionValue == null) {
+        throw new Error("Major Release Version not set. This is a required value.");
     }
 
-    let versionNumber: string = versionNumberValue;
+    if (!isNumber(majorVersionValue)) {
+        throw new Error("Major Release Version must be numeric.");
+    }
 
-    if (versionNumberExpressionValue !== null) {
-        var versionExp = new RegExp(versionNumberExpressionValue);
-        var match = versionExp.exec(versionNumber);
-        if (match !== null && match.length >= 1)
-        {
-            versionNumber = match[0];
-            if (isDebugOutput){
-                console.log('Resolved BuildNumber', versionNumber);
-            }
-        }
-        else
-        {
-            throw new Error("Version Number could not be resolved from " + versionNumber + " using regular expression " + versionNumberExpressionValue);
-        }   
-    }  
+    if (minorVersionValue !== null && !isNumber(minorVersionValue)) {
+        throw new Error("Minor Release Version must be numeric.");
+    }
 
-    let versionLabel: string = preReleaseLabelValue; 
+    if (buildVersionValue !== null && !isNumber(buildVersionValue)) {
+        throw new Error("Build Release Version must be numeric.");
+    }
     
-    if (labelExpressionValue !== null) {
-        var versionExp = new RegExp(labelExpressionValue);
-        var match = versionExp.exec(versionLabel);
-        if (match !== null && match.length >= 1)
-        {
-            versionLabel = match[0];
-            if (isDebugOutput){
-                console.log('Resolved Label', versionLabel);
-            }
-        }
-        else
-        {
-            throw new Error("Version Label could not be resolved from " + versionLabel + " using regular expression " + labelExpressionValue);
-        }   
-    }  
-
-    let isValidVersionValue: boolean = isValidVersion(versionNumber);
-    if (!isValidVersionValue) {
-        throw new Error("Did not find match for Version '" + versionNumber + "' with '" + testVersionFormatExpression + "'");
-    }
-
-    var versionNumberValues = versionNumber.split(".");
-    let isVersionNumericValue: boolean = isVersionNumeric(versionNumberValues);
-    if (!isVersionNumericValue) {
-        throw new Error("Each component of Version must be numeric.");
-    }
+    if (revisionVersionValue !== null && !isNumber(revisionVersionValue)) {
+        throw new Error("Release Revision must be numeric.");
+    } 
 
     let url: string = endPointUrlValue + "api/pullrevisions/PullVersion/" + projectValue
-    let data: string = "{" + "\"versionMajor\":" + versionNumberValues[0];
-    if (versionNumberValues.length >= 2) data += ",\"versionMinor\":" + versionNumberValues[1];
-    if (versionNumberValues.length >= 3) data += ",\"versionBuild\":" + versionNumberValues[2];
-    if (versionNumberValues.length >= 4) data += ",\"versionRevision\":" + versionNumberValues[3];
-    if (versionLabel !== null) {
-        data += ",\"preReleaseLabel\":" + publishValue;
+    let data: string = "{" + "\"versionMajor\":" + majorVersionValue;
+    if (minorVersionValue !== null) data += ",\"versionMinor\":" + minorVersionValue;
+    if (buildVersionValue !== null) data += ",\"versionBuild\":" + buildVersionValue;
+    if (revisionVersionValue !== null) data += ",\"versionRevision\":" + revisionVersionValue;
+    if (preReleaseLabelValue !== null) {
+        data += ",\"preReleaseLabel\": \"" + preReleaseLabelValue + "\"";
     }
     data += ",\"name\": \"" + releaseNameValue + "\"";
     if (releaseDescriptionValue !== null) {
         data += ",\"description\": \"" + releaseDescriptionValue + "\"";
     }
     data += ",\"publish\":" + publishValue;
-    data += ",\"createOnNotFound\":" + publishValue + "}";
+    data += ",\"createOnNotFound\":" + createOnNotFoundValue + "}";
     await runHttpPost(url, data);
 }
 
@@ -307,6 +252,26 @@ async function runHttpPost(url: string, data: string) {
     if (result.message.statusCode !== 200){
         throw new Error("Call to ReleaseNotesHub failed.");
     }
+}
+
+function isValidVersion(version: string): boolean
+{
+    var versionExp = new RegExp(testVersionFormatExpression);
+    return versionExp.test(version);
+}
+
+function isVersionNumeric(version: string[]): boolean
+{
+    for (var value in version)
+    {
+        if (!isNumber(value)) return false;
+    }
+    return true
+}
+
+function isNumber(value: string | number): boolean
+{
+   return ((value !== null) && !isNaN(Number(value.toString())));
 }
 
 run();

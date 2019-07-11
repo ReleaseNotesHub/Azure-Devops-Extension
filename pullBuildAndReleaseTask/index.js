@@ -159,36 +159,58 @@ function runWithVersionVariable() {
         if (versionNumberValues.length >= 4)
             data += ",\"versionRevision\":" + versionNumberValues[3];
         if (versionLabel !== null) {
-            data += ",\"preReleaseLabel\":" + publishValue;
+            data += ",\"preReleaseLabel\": \"" + versionLabel + "\"";
         }
-        data += ",\"name\":" + releaseNameValue;
+        data += ",\"name\": \"" + releaseNameValue + "\"";
         if (releaseDescriptionValue !== null) {
-            data += ",\"description\":" + releaseDescriptionValue;
+            data += ",\"description\": \"" + releaseDescriptionValue + "\"";
         }
         data += ",\"publish\":" + publishValue;
-        data += ",\"createOnNotFound\":" + publishValue + "}";
+        data += ",\"createOnNotFound\":" + createOnNotFoundValue + "}";
         yield runHttpPost(url, data);
     });
-}
-function isValidVersion(version) {
-    var versionExp = new RegExp(testVersionFormatExpression);
-    return versionExp.test(version);
-}
-function isVersionNumeric(version) {
-    for (var value in version) {
-        if (!isNumber(value))
-            return false;
-    }
-    return true;
-}
-function isNumber(value) {
-    return ((value !== null) && !isNaN(Number(value.toString())));
 }
 function runWithVersion() {
     return __awaiter(this, void 0, void 0, function* () {
         if (isDebugOutput) {
             console.log('Executing RnHub Release Pull using Version.');
         }
+        if (releaseNameValue == null) {
+            throw new Error("Release Name not set. This is a required value.");
+        }
+        if (majorVersionValue == null) {
+            throw new Error("Major Release Version not set. This is a required value.");
+        }
+        if (!isNumber(majorVersionValue)) {
+            throw new Error("Major Release Version must be numeric.");
+        }
+        if (minorVersionValue !== null && !isNumber(minorVersionValue)) {
+            throw new Error("Minor Release Version must be numeric.");
+        }
+        if (buildVersionValue !== null && !isNumber(buildVersionValue)) {
+            throw new Error("Build Release Version must be numeric.");
+        }
+        if (revisionVersionValue !== null && !isNumber(revisionVersionValue)) {
+            throw new Error("Release Revision must be numeric.");
+        }
+        let url = endPointUrlValue + "api/pullrevisions/PullVersion/" + projectValue;
+        let data = "{" + "\"versionMajor\":" + majorVersionValue;
+        if (minorVersionValue !== null)
+            data += ",\"versionMinor\":" + minorVersionValue;
+        if (buildVersionValue !== null)
+            data += ",\"versionBuild\":" + buildVersionValue;
+        if (revisionVersionValue !== null)
+            data += ",\"versionRevision\":" + revisionVersionValue;
+        if (preReleaseLabelValue !== null) {
+            data += ",\"preReleaseLabel\": \"" + preReleaseLabelValue + "\"";
+        }
+        data += ",\"name\": \"" + releaseNameValue + "\"";
+        if (releaseDescriptionValue !== null) {
+            data += ",\"description\": \"" + releaseDescriptionValue + "\"";
+        }
+        data += ",\"publish\":" + publishValue;
+        data += ",\"createOnNotFound\":" + createOnNotFoundValue + "}";
+        yield runHttpPost(url, data);
     });
 }
 function runLatestRelease() {
@@ -199,10 +221,6 @@ function runLatestRelease() {
         let url = endPointUrlValue + "api/pullrevisions/PullLatestRelease/" + projectValue;
         let data = "{\"publish\":" + publishValue + "}";
         yield runHttpPost(url, data);
-    });
-}
-function runHttpGet() {
-    return __awaiter(this, void 0, void 0, function* () {
     });
 }
 function runHttpPost(url, data) {
@@ -227,5 +245,19 @@ function runHttpPost(url, data) {
             throw new Error("Call to ReleaseNotesHub failed.");
         }
     });
+}
+function isValidVersion(version) {
+    var versionExp = new RegExp(testVersionFormatExpression);
+    return versionExp.test(version);
+}
+function isVersionNumeric(version) {
+    for (var value in version) {
+        if (!isNumber(value))
+            return false;
+    }
+    return true;
+}
+function isNumber(value) {
+    return ((value !== null) && !isNaN(Number(value.toString())));
 }
 run();
