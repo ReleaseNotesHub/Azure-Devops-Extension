@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 25
+        "Patch": 40
     },
 
     "groups": [
@@ -66,12 +66,49 @@
             "defaultValue": "WithVersion",
             "helpMarkDown": "Select Release.",
             "options": {
-              "WithVersion": "Pull Release notes for Version.",
-              "LatestRelease": "Pull Release Notes for latest Release in 'Draft' status."
+              "LatestRelease": "Pull Release Notes for latest Release in RnHub.",  
+              "WithVersionVariable": "Pull Release notes for BuildNumber.",                  
+              "WithVersion": "Pull Release notes for Version."        
             }
-        },             
+        },     
         {
-            "name": "majorVersion",
+          "name": "releaseName",
+          "type": "string",
+          "label": "Release Name",
+          "defaultValue": "",
+          "required": false,
+          "helpMarkDown": "Release Name.",
+          "visibleRule": "release=WithVersion  || release=WithVersionVariable"
+        },
+        {
+          "name": "releaseDescription",
+          "type": "string",
+          "label": "Release Description",
+          "defaultValue": "",
+          "required": false,
+          "helpMarkDown": "Release Description.",
+          "visibleRule": "release=WithVersion  || release=WithVersionVariable"
+        },                
+        {
+          "name": "withVersionVariable_versionNumber",
+          "type": "string",
+          "label": "Version Number",
+          "defaultValue": "$(Build.BuildNumber)",
+          "required": false,
+          "helpMarkDown": "Version number to be used. This can be extraced from the build name .e.g. 'Build 2019.1.20-rc'.",
+          "visibleRule": "release=WithVersionVariable"
+        },  
+        {
+          "name": "withVersionVariable_versionNumberExpression",
+          "type": "string",
+          "label": "Regex Filter to extract build number",
+          "defaultValue": "\\d+\\.\\d+\\.\\d+\\.\\d+",
+          "required": false,
+          "helpMarkDown": "Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.",
+          "visibleRule": "release=WithVersionVariable"
+        },         
+        {
+            "name": "withVersion_majorVersion",
             "type": "string",
             "label": "Major Version",
             "defaultValue": "",
@@ -80,7 +117,7 @@
             "visibleRule": "release=WithVersion"
           },     
           {
-            "name": "minorVersion",
+            "name": "withVersion_minorVersion",
             "type": "string",
             "label": "Minor Version",
             "defaultValue": "",
@@ -89,7 +126,7 @@
             "visibleRule": "release=WithVersion"
           },  
           {
-            "name": "buildVersion",
+            "name": "withVersion_buildVersion",
             "type": "string",
             "label": "Build",
             "defaultValue": "",
@@ -98,7 +135,7 @@
             "visibleRule": "release=WithVersion"
           },     
           {
-            "name": "revisionVersion",
+            "name": "withVersion_revisionVersion",
             "type": "string",
             "label": "Revision",
             "defaultValue": "",
@@ -113,8 +150,17 @@
             "defaultValue": "",
             "required": false,
             "helpMarkDown": "Sematic pre-release Label.",
-            "visibleRule": "release=WithVersion"
+            "visibleRule": "release=WithVersion || release=WithVersionVariable"
           },
+          {
+            "name": "withVersionVariable_labelExpression",
+            "type": "string",
+            "label": "Regex Filter to extract Semantic Label",
+            "defaultValue": "-.*",
+            "required": false,
+            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '-.*'.",
+            "visibleRule": "release=WithVersionVariable"
+          },    
           {
               "name": "createOnNotFound",
               "type": "boolean",
@@ -122,7 +168,7 @@
               "defaultValue": "false",
               "required": false,
               "helpMarkDown": "Create Release with version if not found.",
-              "visibleRule": "release=WithVersion"
+              "visibleRule": "release=WithVersion  || release=WithVersionVariable"
           }                                    
       ],
       "dataSourceBindings": [        
@@ -140,6 +186,8 @@
             "target": "project",
             "endpointId": "$(ReleaseNotesHubService)",
             "endpointUrl": "{{endpoint.url}}api/projects/getbyspace/$(space)?page={{page}}&pageSize=20",
+            "requestVerb": "Post",
+            "requestContent": "{}",
             "resultSelector": "jsonpath:$.results[*]",
             "resultTemplate": "{ \"Value\" : \"{{{id}}}\", \"DisplayValue\" : \"{{{name}}}\" }",
             "callbackContextTemplate": "{\"page\": \"{{add page 1}}\"}",

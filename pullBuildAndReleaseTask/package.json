@@ -1,6 +1,6 @@
 {
   "name": "rnh_trigger_pull_buildandreleasetask",
-  "version": "0.0.25",
+  "version": "0.0.40",
   "description": "Trigger ReleaseNotesHub pull for release notes",
   "main": "index.js",
   "scripts": {

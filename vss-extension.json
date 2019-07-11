@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "rnh-buildandreleasetasks",
     "name": "ReleaseNotesHub Build and Release Tasks",
-    "version": "0.0.25",
+    "version": "0.0.40",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
