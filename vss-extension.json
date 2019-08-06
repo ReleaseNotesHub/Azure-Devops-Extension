@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
-    "id": "rnh-buildandreleasetasks",
-    "name": "ReleaseNotesHub Build and Release Tasks",
+    "id": "rnh-pipelinetasks",
+    "name": "ReleaseNotesHub PipeLine Tasks",
     "version": "0.0.43",
     "publisher": "ReleaseNotesHub",
     "targets": [
@@ -9,7 +9,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Tools for building/releasing with ReleaseNotesHub. Includes build/release task.",
+    "description": "Tools for integrating with ReleaseNotesHub.",
     "tags": [
         "Notes",
         "Release Notes",  
@@ -52,7 +52,7 @@
     },              
     "files": [
         {
-            "path": "pullBuildAndReleaseTask"
+            "path": "pullPipeLineTask"
         }
     ],
     "contributions": [
@@ -96,13 +96,13 @@
             }
         },        
         {
-            "id": "rnh_trigger_pull_buildandreleasetask",
+            "id": "rnh_trigger_pull_pipelinetask",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "pullBuildAndReleaseTask"
+                "name": "pullPipeLineTask"
             }
         }        
     ]
