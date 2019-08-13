@@ -14,18 +14,16 @@ let serviceValue;
 let spaceValue;
 let projectValue;
 let publishValue;
-let releaseValue;
+let mergeValue;
+let mergeOptionsValue;
+let releaseOptionsValue;
 let releaseNameValue;
 let releaseDescriptionValue;
-let majorVersionValue;
-let minorVersionValue;
-let buildVersionValue;
-let revisionVersionValue;
-let preReleaseLabelValue;
-let createOnNotFoundValue;
 let versionNumberValue;
 let versionNumberExpressionValue;
+let labelValue;
 let labelExpressionValue;
+let createOnNotFoundValue;
 var endPointUrlValue;
 var endPointApiKey;
 let isDebugOutput;
@@ -33,22 +31,20 @@ const testVersionFormatExpression = "^(\\d+\\.)?(\\*|\\d+)$|^(\\d+\\.)?(\\d+\\.)
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            serviceValue = tl.getInput('ReleaseNotesHubService', true);
-            spaceValue = tl.getInput('space', true);
-            projectValue = tl.getInput('project', true);
-            publishValue = tl.getInput('publish', true);
-            releaseValue = tl.getInput('release', true);
-            releaseNameValue = tl.getInput('releaseName', false);
-            releaseDescriptionValue = tl.getInput('releaseDescription', false);
-            majorVersionValue = tl.getInput('withVersion_majorVersion', false);
-            minorVersionValue = tl.getInput('withVersion_minorVersion', false);
-            buildVersionValue = tl.getInput('withVersion_buildVersion', false);
-            revisionVersionValue = tl.getInput('withVersion_revisionVersion', false);
-            preReleaseLabelValue = tl.getInput('preReleaseLabel', false);
-            createOnNotFoundValue = tl.getInput('createOnNotFound', true);
-            versionNumberValue = tl.getInput('withVersionVariable_versionNumber', false);
-            versionNumberExpressionValue = tl.getInput('withVersionVariable_versionNumberExpression', false);
-            labelExpressionValue = tl.getInput('withVersionVariable_labelExpression', false);
+            serviceValue = tl.getInput("ReleaseNotesHubService", true);
+            spaceValue = tl.getInput("space", true);
+            projectValue = tl.getInput("project", true);
+            publishValue = tl.getInput("publish", true);
+            mergeValue = tl.getInput("merge", true);
+            mergeOptionsValue = tl.getInput("mergeOptions", true);
+            releaseOptionsValue = tl.getInput("releaseOptions", true);
+            releaseNameValue = tl.getInput("releaseName", false);
+            releaseDescriptionValue = tl.getInput("releaseDescription", false);
+            versionNumberValue = tl.getInput("versionNumber", false);
+            versionNumberExpressionValue = tl.getInput("versionNumberExpression", false);
+            labelValue = tl.getInput("label", false);
+            labelExpressionValue = tl.getInput("labelExpression", false);
+            createOnNotFoundValue = tl.getInput("createOnNotFound", true);
             endPointUrlValue = tl.getEndpointUrl(serviceValue, true);
             var endPointAuthValue = tl.getEndpointAuthorization(serviceValue, true);
             endPointApiKey = endPointAuthValue.parameters["apitoken"];
@@ -65,18 +61,16 @@ function run() {
                 console.log('spaceValue', spaceValue);
                 console.log('projectValue', projectValue);
                 console.log('publishValue', publishValue);
-                console.log('releaseValue', releaseValue);
+                console.log('mergeValue', mergeValue);
+                console.log('mergeOptionsValue', mergeOptionsValue);
+                console.log('releaseOptionsValue', releaseOptionsValue);
                 console.log('releaseNameValue', releaseNameValue);
                 console.log('releaseDescriptionValue', releaseDescriptionValue);
-                console.log('withVersion_majorVersion', majorVersionValue);
-                console.log('withVersion_minorVersion', minorVersionValue);
-                console.log('withVersion_buildVersion', buildVersionValue);
-                console.log('withVersion_revisionVersion', revisionVersionValue);
-                console.log('preReleaseLabel', preReleaseLabelValue);
+                console.log('versionNumber', versionNumberValue);
+                console.log('versionNumberExpression', versionNumberExpressionValue);
+                console.log('preReleaseLabel', labelValue);
+                console.log('labelExpression', labelExpressionValue);
                 console.log('createOnNotFound', createOnNotFoundValue);
-                console.log('withVersionVariable_versionNumber', versionNumberValue);
-                console.log('withVersionVariable_versionNumberExpression', versionNumberExpressionValue);
-                console.log('withVersionVariable_labelExpression', labelExpressionValue);
                 console.log('endPointUrlValue', endPointUrlValue);
                 console.log('endPointApiKey', endPointApiKey);
                 for (let key in endPointAuthValue.parameters) {
@@ -84,156 +78,120 @@ function run() {
                     console.log(key, value);
                 }
             }
-            if (releaseValue == 'WithVersionVariable') {
-                yield runWithVersionVariable();
-            }
-            else if (releaseValue == 'WithVersion') {
+            if (releaseOptionsValue == "WithVersion") {
                 yield runWithVersion();
             }
-            else if (releaseValue == 'LatestRelease') {
+            else if (releaseOptionsValue == "LatestRelease") {
                 yield runLatestRelease();
             }
         }
         catch (err) {
             if (isDebugOutput) {
-                console.log('Error', err);
+                console.log("Error", err);
             }
             tl.setResult(tl.TaskResult.Failed, err.message);
         }
     });
 }
-function runWithVersionVariable() {
+function runWithVersion() {
     return __awaiter(this, void 0, void 0, function* () {
         if (isDebugOutput) {
-            console.log('Executing RnHub Release Pull using BuildNumber.');
-        }
-        if (releaseNameValue == null) {
-            throw new Error("Release Name not set. This is a required value.");
+            console.log('Executing RnHub Release Pull with Version.');
         }
         if (versionNumberValue == null) {
             throw new Error("Version Number not set. This is a required value.");
         }
-        let versionNumber = versionNumberValue;
-        if (versionNumberExpressionValue !== null) {
-            var versionExp = new RegExp(versionNumberExpressionValue);
-            var match = versionExp.exec(versionNumber);
-            if (match !== null && match.length >= 1) {
-                versionNumber = match[0];
-                if (isDebugOutput) {
-                    console.log('Resolved BuildNumber', versionNumber);
-                }
-            }
-            else {
-                throw new Error("Version Number could not be resolved from " + versionNumber + " using regular expression " + versionNumberExpressionValue);
-            }
+        var versionExp = new RegExp(versionNumberExpressionValue);
+        var match = versionExp.exec(versionNumberValue);
+        if (match == null || match.length == 0) {
+            throw new Error("Version Number could not be resolved from '" + versionNumberValue + "' using regular expression '" + versionNumberExpressionValue + "'");
         }
-        let versionLabel = preReleaseLabelValue;
+        let versionMajor = getVersionGroup(match, 1, "Major Version");
+        let versionMinor = getVersionGroup(match, 2, "Minor Version");
+        let versionBuild = getVersionGroup(match, 3, "Build Version");
+        let versionRevision = getVersionGroup(match, 4, "Version Revision");
+        let versionLabel = labelValue;
         if (labelExpressionValue !== null) {
             var versionExp = new RegExp(labelExpressionValue);
             var match = versionExp.exec(versionLabel);
             if (match !== null && match.length >= 1) {
-                versionLabel = match[0];
+                versionLabel = match[1];
                 if (isDebugOutput) {
-                    console.log('Resolved Label', versionLabel);
+                    console.log("Resolved Label", versionLabel);
                 }
             }
             else {
                 throw new Error("Version Label could not be resolved from " + versionLabel + " using regular expression " + labelExpressionValue);
             }
         }
-        let isValidVersionValue = isValidVersion(versionNumber);
-        if (!isValidVersionValue) {
-            throw new Error("Did not find match for Version '" + versionNumber + "' with '" + testVersionFormatExpression + "'");
-        }
-        var versionNumberValues = versionNumber.split(".");
-        let isVersionNumericValue = isVersionNumeric(versionNumberValues);
-        if (!isVersionNumericValue) {
-            throw new Error("Each component of Version must be numeric.");
-        }
-        let url = endPointUrlValue + "api/pullrevisions/PullVersion/" + projectValue;
-        let data = "{" + "\"versionMajor\":" + versionNumberValues[0];
-        if (versionNumberValues.length >= 2)
-            data += ",\"versionMinor\":" + versionNumberValues[1];
-        if (versionNumberValues.length >= 3)
-            data += ",\"versionBuild\":" + versionNumberValues[2];
-        if (versionNumberValues.length >= 4)
-            data += ",\"versionRevision\":" + versionNumberValues[3];
+        let url = endPointUrlValue + "api/pull/PullVersion/" + projectValue;
+        let data = "{";
+        data += "\"version\": {";
+        data += "\"versionMajor\":" + versionMajor;
+        if (versionMinor !== null)
+            data += ",\"versionMinor\":" + versionMinor;
+        if (versionBuild !== null)
+            data += ",\"versionBuild\":" + versionBuild;
+        if (versionRevision !== null)
+            data += ",\"versionRevision\":" + versionRevision;
         if (versionLabel !== null) {
             data += ",\"preReleaseLabel\": \"" + versionLabel + "\"";
+            data += ",\"isSemanticVersion\": true";
         }
-        data += ",\"name\": \"" + releaseNameValue + "\"";
+        data += "}";
+        if (releaseNameValue !== null) {
+            data += ",\"name\": \"" + releaseNameValue + "\"";
+        }
         if (releaseDescriptionValue !== null) {
             data += ",\"description\": \"" + releaseDescriptionValue + "\"";
         }
         data += ",\"publish\":" + publishValue;
-        data += ",\"createOnNotFound\":" + createOnNotFoundValue + "}";
+        data += ",\"createOnNotFound\":" + createOnNotFoundValue;
+        data += ",\"merge\":" + mergeValue;
+        data += ",\"mergePoint\":" + mergeOptionsValue;
+        data += "}";
         yield runHttpPost(url, data);
     });
 }
-function runWithVersion() {
-    return __awaiter(this, void 0, void 0, function* () {
-        if (isDebugOutput) {
-            console.log('Executing RnHub Release Pull using Version.');
-        }
-        if (releaseNameValue == null) {
-            throw new Error("Release Name not set. This is a required value.");
-        }
-        if (majorVersionValue == null) {
-            throw new Error("Major Release Version not set. This is a required value.");
-        }
-        if (!isNumber(majorVersionValue)) {
-            throw new Error("Major Release Version must be numeric.");
-        }
-        if (minorVersionValue !== null && !isNumber(minorVersionValue)) {
-            throw new Error("Minor Release Version must be numeric.");
-        }
-        if (buildVersionValue !== null && !isNumber(buildVersionValue)) {
-            throw new Error("Build Release Version must be numeric.");
-        }
-        if (revisionVersionValue !== null && !isNumber(revisionVersionValue)) {
-            throw new Error("Release Revision must be numeric.");
-        }
-        let url = endPointUrlValue + "api/pullrevisions/PullVersion/" + projectValue;
-        let data = "{" + "\"versionMajor\":" + majorVersionValue;
-        if (minorVersionValue !== null)
-            data += ",\"versionMinor\":" + minorVersionValue;
-        if (buildVersionValue !== null)
-            data += ",\"versionBuild\":" + buildVersionValue;
-        if (revisionVersionValue !== null)
-            data += ",\"versionRevision\":" + revisionVersionValue;
-        if (preReleaseLabelValue !== null) {
-            data += ",\"preReleaseLabel\": \"" + preReleaseLabelValue + "\"";
-        }
-        data += ",\"name\": \"" + releaseNameValue + "\"";
-        if (releaseDescriptionValue !== null) {
-            data += ",\"description\": \"" + releaseDescriptionValue + "\"";
-        }
-        data += ",\"publish\":" + publishValue;
-        data += ",\"createOnNotFound\":" + createOnNotFoundValue + "}";
-        yield runHttpPost(url, data);
-    });
+function getVersionGroup(groups, index, compmentName) {
+    if (groups == null || groups.length <= index) {
+        return null;
+    }
+    let value = groups[index];
+    let isVersionNumericValue = isNumber(value);
+    if (!isVersionNumericValue) {
+        throw new Error(compmentName + " '" + value + "' must be numeric.");
+    }
+    if (isDebugOutput) {
+        console.log("Resolved " + compmentName + " is", value);
+    }
+    return value;
 }
 function runLatestRelease() {
     return __awaiter(this, void 0, void 0, function* () {
         if (isDebugOutput) {
             console.log('Executing RnHub Pull for latest Release.');
         }
-        let url = endPointUrlValue + "api/pullrevisions/PullLatestRelease/" + projectValue;
-        let data = "{\"publish\":" + publishValue + "}";
+        let url = endPointUrlValue + "api/pull/PullLatestRelease/" + projectValue;
+        let data = "{";
+        data += "{\"publish\":" + publishValue + "}";
+        data += ",\"merge\":" + mergeValue;
+        data += ",\"mergePoint\":" + mergeOptionsValue;
+        data += "}";
         yield runHttpPost(url, data);
     });
 }
 function runHttpPost(url, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        let httpClient = new httpc.HttpClient('ReleaseNotesHub', []);
+        let httpClient = new httpc.HttpClient("ReleaseNotesHub", []);
         if (isDebugOutput) {
             console.log('Post to url', url);
             console.log('Post data', data);
         }
         let result = yield httpClient.post(url, data, {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'ApiKey ' + endPointApiKey
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "ApiKey " + endPointApiKey
         });
         console.log('Response Status Code', result.message.statusCode);
         let body = yield result.readBody();
@@ -249,13 +207,6 @@ function runHttpPost(url, data) {
 function isValidVersion(version) {
     var versionExp = new RegExp(testVersionFormatExpression);
     return versionExp.test(version);
-}
-function isVersionNumeric(version) {
-    for (var value in version) {
-        if (!isNumber(value))
-            return false;
-    }
-    return true;
 }
 function isNumber(value) {
     return ((value !== null) && !isNaN(Number(value.toString())));
