@@ -1,0 +1,23 @@
+{
+  "name": "rnh_trigger_pipelinetask",
+  "version": "0.0.53",
+  "description": "Trigger ReleaseNotesHub events",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "ReleaseNotesHub",
+    "RnHub",
+    "ReleaseNotes",
+    "Publish"
+  ],
+  "author": "ReleaseNotesHub",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.7.1",
+    "@types/q": "^1.5.2",
+    "typescript": "^3.5.2",
+    "tfx-cli": "^0.7.8"
+  }
+}

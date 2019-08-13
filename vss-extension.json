@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "rnh-pipelinetasks",
     "name": "ReleaseNotesHub PipeLine Tasks",
-    "version": "0.0.51",
+    "version": "0.0.56",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
@@ -31,6 +31,11 @@
     "icons": {
         "default": "images/icon.png"        
     },
+    "content": {
+      "details": {
+        "path": "overview.md"
+      }
+    },    
     "links": {
         "repository": {
           "uri": "https://stg-rnh-api-as.azurewebsites.net/swagger"
@@ -53,7 +58,10 @@
     "files": [
         {
             "path": "pullPipeLineTask"
-        }
+        },
+        {
+          "path": "publishPipeLineTask"
+        } 
     ],
     "contributions": [
         {
@@ -104,6 +112,16 @@
             "properties": {
                 "name": "pullPipeLineTask"
             }
-        }        
+        },   
+        {
+          "id": "rnh_trigger_publish_pipelinetask",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+              "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+              "name": "publishPipeLineTask"
+          }
+      }                
     ]
 }
