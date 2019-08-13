@@ -124,7 +124,7 @@
             "label": "Regex Filter to extract Semantic Label",
             "defaultValue": "-.*",
             "required": false,
-            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '-.*'.",
+            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '(?<=-).*'.",
             "visibleRule": "publishOptions=WithVersionVariable"
           }                                    
       ],
