@@ -1,8 +1,8 @@
 {
   "id": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e",
   "name": "rnh_trigger_pull_pipelinetask",
-  "friendlyName": "Trigger ReleaseNotesHub Pull",
-  "description": "Trigger ReleaseNotesHub pull for release notes",
+  "friendlyName": "Trigger ReleaseNotesHub Pull.",
+  "description": "Trigger ReleaseNotesHub pull for release notes.",
   "helpUrl": "https://stg-rnh-api-as.azurewebsites.net/swagger",
   "helpMarkDown": "",
   "category": "Deploy",
@@ -179,7 +179,7 @@
           "label": "Regex Filter to extract Semantic Label",
           "defaultValue": "-.*",
           "required": false,
-          "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '-.*'.",
+          "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '(?<=-).*'.",
           "visibleRule": "releaseOptions=WithVersionVariable"
         },    
         {
