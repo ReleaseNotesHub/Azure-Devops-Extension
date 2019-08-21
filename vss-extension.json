@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "rnh-pipelinetasks",
     "name": "ReleaseNotesHub PipeLine Tasks",
-    "version": "0.0.56",
+    "version": "0.0.57",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
@@ -96,7 +96,7 @@
                   "type": "ms.vss-endpoint.endpoint-auth-scheme-token"
                 }
               ],
-              "helpMarkDown": "<a href=\"url-to-documentation\" target=\"_blank\"><b>Learn More</b></a>"
+              "helpMarkDown": "The RnHub URL must be accessible from both VSTS and any agents that are running builds or releases. See <a href=\"https://stg-rnh-web-as.azurewebsites.net\" target=\"_blank\"><b>Learn More</b></a> for details."
             },
             "icons": {
                 "default": "images/icon.png",

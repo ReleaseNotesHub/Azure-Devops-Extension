@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 56
+        "Patch": 57
     },
    
     "instanceNameFormat": "Trigger ReleaseNotesHub Publish",
@@ -122,9 +122,9 @@
             "name": "withVersionVariable_labelExpression",
             "type": "string",
             "label": "Regex Filter to extract Semantic Label",
-            "defaultValue": "-.*",
+            "defaultValue": "((-)(.*))",
             "required": false,
-            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '(?<=-).*'.",
+            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '((-)(.*))",
             "visibleRule": "publishOptions=WithVersionVariable"
           }                                    
       ],

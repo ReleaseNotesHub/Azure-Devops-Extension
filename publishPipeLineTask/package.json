@@ -1,7 +1,7 @@
 {
   "name": "rnh_trigger_publish_pipelinetask",
-  "version": "0.0.56",
-  "description": "Trigger ReleaseNotesHub Publish Release",
+  "version": "0.0.57",
+  "description": "Trigger ReleaseNotesHub Publish Release.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
