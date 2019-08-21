@@ -91,32 +91,14 @@
             "WithVersionVariable": "Pull Release notes for BuildNumber.",                  
             "WithVersion": "Pull Release notes for Version."        
           }
-      },     
-      {
-        "name": "releaseName",
-        "type": "string",
-        "label": "Release Name",
-        "defaultValue": "",
-        "required": false,
-        "helpMarkDown": "Release Name.",
-        "visibleRule": "releaseOptions=WithVersion  || releaseOptions=WithVersionVariable"
-      },
-      {
-        "name": "releaseDescription",
-        "type": "string",
-        "label": "Release Description",
-        "defaultValue": "",
-        "required": false,
-        "helpMarkDown": "Release Description.",
-        "visibleRule": "releaseOptions=WithVersion  || releaseOptions=WithVersionVariable"
-      },                
+      },                  
       {
         "name": "withVersionVariable_versionNumber",
         "type": "string",
         "label": "Version Number",
         "defaultValue": "$(Build.BuildNumber)",
         "required": false,
-        "helpMarkDown": "Version number to be used. This can be extraced from the build name .e.g. 'Build 2019.1.20-rc'.",
+        "helpMarkDown": "Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.",
         "visibleRule": "releaseOptions=WithVersionVariable"
       },  
       {
@@ -190,7 +172,25 @@
             "required": false,
             "helpMarkDown": "Create Release with version if not found.",
             "visibleRule": "releaseOptions=WithVersion  || releaseOptions=WithVersionVariable"
-        }                                    
+        },
+        {
+          "name": "releaseName",
+          "type": "string",
+          "label": "Release Name",
+          "defaultValue": "",
+          "required": false,
+          "helpMarkDown": "Release Name.",
+          "visibleRule": "createOnNotFound=true"
+        },
+        {
+          "name": "releaseDescription",
+          "type": "string",
+          "label": "Release Description",
+          "defaultValue": "",
+          "required": false,
+          "helpMarkDown": "Release Description.",
+          "visibleRule": "createOnNotFound=true"
+        }                                         
     ],
     "dataSourceBindings": [        
       {

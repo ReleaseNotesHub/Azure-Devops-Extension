@@ -46,7 +46,7 @@
         {
             "name": "publishOptions",
             "type": "radio",
-            "label": "Publish",
+            "label": "Publish Options",
             "required": true,
             "defaultValue": "WithVersion",
             "helpMarkDown": "Select Release.",
@@ -61,7 +61,7 @@
           "label": "Version Number",
           "defaultValue": "$(Build.BuildNumber)",
           "required": false,
-          "helpMarkDown": "Version number to be used. This can be extraced from the build name .e.g. 'Build 2019.1.20-rc'.",
+          "helpMarkDown": "Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.",
           "visibleRule": "publishOptions=WithVersionVariable"
         },  
         {
