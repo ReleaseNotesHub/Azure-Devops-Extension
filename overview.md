@@ -13,10 +13,10 @@ Before adding any Build or Release tasks to your process, configure a "ReleaseNo
 
 ### Tasks and Widgets
 This extension adds the following tasks:
-- Trigger ReleaseNotesHub Pull
-- Trigger ReleaseNotesHub Publish Release
+- [Trigger ReleaseNotesHub Pull](#TriggerPull)
+- [Trigger ReleaseNotesHub Publish Release](#TriggerPublish)
 
-### Trigger ReleaseNotesHub Pull
+### <a id="TriggerPull"></a>Trigger ReleaseNotesHub Pull
 Options include:
   - ReleaseNotesHub service/server end point: The configured service connection
   - Space: ReleaseNotesHub spaces are restricted based on permissions.
@@ -55,7 +55,7 @@ Options include:
     - Release Name: Release name to use when creating a new release.
     - Release Description: Release description to use when creating a new release.
 
-### Trigger ReleaseNotesHub Publish Release
+### <a id="TriggerPublish"></a>Trigger ReleaseNotesHub Publish Release
 Options include:
   - ReleaseNotesHub service/server end point: The configured service connection
   - Space: ReleaseNotesHub spaces are restricted based on permissions.
