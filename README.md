@@ -11,6 +11,10 @@ Integrate with any Bug or Task management system, including GitHub, Azure Devops
 ### Add a service connection to ReleaseNotesHub
 Before adding any Build or Release tasks to your process, configure a "ReleaseNotesHub" service connection in the Project Settings under Service connections.
 
+Options include:
+  - Server Url: https://stg-rnh-api-as.azurewebsites.net
+  - API Token: ApiKey based on ClientId and ClientSecret. For Example "ApiKey {ClientId:ClientSecret}". Please note the prefix “ApiKey” is required!
+
 <a href="https://imgur.com/zqSz36L"><img src="https://i.imgur.com/zqSz36L.png" title="source: imgur.com" /></a>
 
 ### Tasks and Widgets
