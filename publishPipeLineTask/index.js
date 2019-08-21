@@ -113,8 +113,8 @@ function runWithVersionVariable() {
         if (labelExpressionValue !== null) {
             var versionExp = new RegExp(labelExpressionValue);
             var match = versionExp.exec(versionLabel);
-            if (match !== null && match.length >= 1) {
-                versionLabel = match[0];
+            if (match !== null && match.length >= 4) {
+                versionLabel = match[3];
                 if (isDebugOutput) {
                     console.log('Resolved Label', versionLabel);
                 }
