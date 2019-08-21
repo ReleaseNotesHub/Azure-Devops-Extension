@@ -11,6 +11,8 @@ Integrate with any Bug or Task management system, including GitHub, Azure Devops
 ### Add a service connection to ReleaseNotesHub
 Before adding any Build or Release tasks to your process, configure a "ReleaseNotesHub" service connection in the Project Settings under Service connections.
 
+<a href="https://imgur.com/zqSz36L"><img src="https://i.imgur.com/zqSz36L.png" title="source: imgur.com" /></a>
+
 ### Tasks and Widgets
 This extension adds the following tasks:
 - [Trigger ReleaseNotesHub Pull](#TriggerPull)
@@ -31,19 +33,19 @@ Options include:
 <a href="https://imgur.com/vlv19Tm"><img src="https://i.imgur.com/vlv19Tm.png" title="source: imgur.com" /></a>
 
 #### Pull Release notes for BuildNumber
-<a href="https://imgur.com/fs0KVY7"><img src="https://i.imgur.com/fs0KVY7.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/psGLTPQ"><img src="https://i.imgur.com/psGLTPQ.png" title="source: imgur.com" /></a>
 
 Options include:
   - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
   - Regex Filter to extract build number: Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.
   - Semantic Label: Sematic pre-release Label.
-  - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*)). 
+  - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*))'. 
    - Create Release if not found: Create Release with version if not found.     
     - Release Name: Release name to use when creating a new release.
     - Release Description: Release description to use when creating a new release.
 
 #### Pull Release notes for Version
-<a href="https://imgur.com/ccNelmM"><img src="https://i.imgur.com/ccNelmM.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/ocicfPe"><img src="https://i.imgur.com/ocicfPe.png" title="source: imgur.com" /></a>
 
 Options include:
   - Major Version: Major version for release.
@@ -56,6 +58,7 @@ Options include:
     - Release Description: Release description to use when creating a new release.
 
 ### <a id="TriggerPublish"></a>Trigger ReleaseNotesHub Publish Release
+
 Options include:
   - ReleaseNotesHub service/server end point: The configured service connection
   - Space: ReleaseNotesHub spaces are restricted based on permissions.
@@ -72,7 +75,7 @@ Options include:
   - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
   - Regex Filter to extract build number: Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.
   - Semantic Label: Sematic pre-release Label.
-  - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*)). 
+  - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*))'. 
 
 #### Publish Release notes for Version and latest Revision
 <a href="https://imgur.com/YZt39yq"><img src="https://i.imgur.com/YZt39yq.png" title="source: imgur.com" /></a>

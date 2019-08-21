@@ -1,6 +1,6 @@
 {
   "name": "rnh_trigger_pull_pipelinetask",
-  "version": "0.0.57",
+  "version": "0.0.58",
   "description": "Trigger ReleaseNotesHub pull for release notes.",
   "main": "index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "rnh_trigger_publish_pipelinetask",
-  "version": "0.0.57",
+  "version": "0.0.58",
   "description": "Trigger ReleaseNotesHub Publish Release.",
   "main": "index.js",
   "scripts": {
