@@ -82,7 +82,7 @@ Options include:
   - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*))'. 
 
 #### Publish Release notes for Version and latest Revision
-<a href="https://imgur.com/YZt39yq"><img src="https://i.imgur.com/YZt39yq.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Accg9KJ"><img src="https://i.imgur.com/Accg9KJ.png" title="source: imgur.com" /></a>
 
 Options include:
   - Major Version: Major version for release.
