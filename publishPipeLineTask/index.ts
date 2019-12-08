@@ -137,7 +137,7 @@ async function runWithVersionVariable() {
         throw new Error("Each component of Version must be numeric.");
     }
 
-    let url: string = endPointUrlValue + "api/releases/SetLatestRevisionToPublishedForProject/" + projectValue
+    let url: string = endPointUrlValue + "api/releases/SetToPublishedForProject/" + projectValue
 
     let data: string = "{";    
     data += "\"version\": {";
@@ -176,7 +176,7 @@ async function runWithVersion() {
         throw new Error("Release Revision must be numeric.");
     } 
 
-    let url: string = endPointUrlValue + "api/releases/SetLatestRevisionToPublishedForProject/" + projectValue
+    let url: string = endPointUrlValue + "api/releases/SetToPublishedForProject/" + projectValue
     let data: string = "{";    
     data += "\"version\": {";
     data += "\"versionMajor\":" + majorVersionValue;

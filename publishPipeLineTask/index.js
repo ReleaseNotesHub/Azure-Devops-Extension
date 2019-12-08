@@ -132,7 +132,7 @@ function runWithVersionVariable() {
         if (!isVersionNumericValue) {
             throw new Error("Each component of Version must be numeric.");
         }
-        let url = endPointUrlValue + "api/releases/SetLatestRevisionToPublishedForProject/" + projectValue;
+        let url = endPointUrlValue + "api/releases/SetToPublishedForProject/" + projectValue;
         let data = "{";
         data += "\"version\": {";
         data += "\"versionMajor\":" + versionNumberValues[0];
@@ -169,7 +169,7 @@ function runWithVersion() {
         if (revisionVersionValue !== null && !isNumber(revisionVersionValue)) {
             throw new Error("Release Revision must be numeric.");
         }
-        let url = endPointUrlValue + "api/releases/SetLatestRevisionToPublishedForProject/" + projectValue;
+        let url = endPointUrlValue + "api/releases/SetToPublishedForProject/" + projectValue;
         let data = "{";
         data += "\"version\": {";
         data += "\"versionMajor\":" + majorVersionValue;
