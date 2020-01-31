@@ -3,7 +3,7 @@
     "name": "rnh_trigger_publish_pipelinetask",
     "friendlyName": "Trigger ReleaseNotesHub Publish Release.",
     "description": "Trigger ReleaseNotesHub publish release notes.",
-    "helpUrl": "https://stg-rnh-api-as.azurewebsites.net/swagger",
+    "helpUrl": "https://demo.releasenoteshub.com",
     "helpMarkDown": "",
     "category": "Deploy",
     "author": "ReleaseNotesHub",
