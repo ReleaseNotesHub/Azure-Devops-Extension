@@ -35,12 +35,12 @@ const testVersionFormatExpression = "^(\\d+\\.)?(\\*|\\d+)$|^(\\d+\\.)?(\\d+\\.)
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            mergeOptionsValue = 1;           
             serviceValue = tl.getInput('ReleaseNotesHubService', true);
             spaceValue = tl.getInput('space', true);
             projectValue = tl.getInput('project', true);
             publishValue = tl.getInput('publish', true);
             mergeValue = tl.getInput("merge", true);
-            mergeOptionsValue = tl.getInput("mergeOptions", true);
             releaseOptionsValue = tl.getInput('releaseOptions', true);
             releaseNameValue = tl.getInput('releaseName', false);
             releaseDescriptionValue = tl.getInput('releaseDescription', false);
@@ -70,7 +70,6 @@ function run() {
                 console.log('projectValue', projectValue);
                 console.log('publishValue', publishValue);
                 console.log('mergeValue', mergeValue);
-                console.log('mergeOptionsValue', mergeOptionsValue);
                 console.log('releaseOptionsValue', releaseOptionsValue);
                 console.log('releaseNameValue', releaseNameValue);
                 console.log('releaseDescriptionValue', releaseDescriptionValue);
