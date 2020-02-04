@@ -1,10 +1,10 @@
 ## Welcome to ReleaseNotesHub
 ### Release Your Potential
-ReleaseNotesHub is a SaaS solution for the publication of Release Notes.
-It provides a portal through which Release Notes can be shared and queried.
+ReleaseNotesHub is a SaaS solution that automates the generation and publication of release notes.
+RnHub has reinvented the way in which release notes are captured, stored and made available to the customer.
+It does'nt produce a static document or wiki article for a release. Instead, RnHub is a search engine for release notes. The platform allows the consumer to search, discover and explore changes made to an app, service or software solution.
 
-RnHub accelerates the development life-cycle while integrating seamlessly with your DevOps workflow.
-Integrate with any Bug or Task management system, including GitHub, Azure Devops, TFS or Jira.
+With RnHub the creation of Release Notes becomes another step within your CI/CD pipeline. With the appropriate permission, RnHub can pull or receive content from any ticket or task management system which can then be aggregated, sanitised and published via the RnHub platform. RnHub can pull content from many systems including TFS, Azure Devops, GitHub, Jira and Asana.
 
 <a  href="https://imgur.com/lgLUA41"><img  src="https://i.imgur.com/lgLUA41.gif"  width="40%"  height="40%"  title="source: imgur.com"  /></a>
 
@@ -12,8 +12,8 @@ Integrate with any Bug or Task management system, including GitHub, Azure Devops
 Before adding any Build or Release tasks to your process, configure a "ReleaseNotesHub" service connection in the Project Settings under Service connections.
 
 Options include:
-  - Server Url: https://stg-rnh-api-as.azurewebsites.net
-  - API Token: ApiKey based on ClientId and ClientSecret. For Example "ApiKey {ClientId:ClientSecret}". Please note the prefix “ApiKey” is required!
+  - Server Url: https://demo.api.releasenoteshub.com/
+  - API Token: ApiKey as retrieved from your user profile https://www.demo.releasenoteshub.com/profile. Please note the prefix “ApiKey” is required!
 
 <a href="https://imgur.com/zqSz36L"><img src="https://i.imgur.com/zqSz36L.png" title="source: imgur.com" /></a>
 
@@ -26,12 +26,9 @@ This extension adds the following tasks:
 Options include:
   - ReleaseNotesHub service/server end point: The configured service connection
   - Space: ReleaseNotesHub spaces are restricted based on permissions.
-  - Project: ReleaseNotesHub projects filtered based on selected sace. 
+  - Project: ReleaseNotesHub projects filtered based on selected space. 
   - Publish Release: When enabled, release is created and then published.
-  - Merge Release: When enabled, merge options are displayed.
-  - Merge Options:
-    - [Opition 1] Merge from Last merge point to current release. If no merge point exists, merge from last published release to current release.
-    - [Opition 2] Merge from last published release to current release.
+  - Merge Release: Merge notes from previous merge point or published release.
 
 #### Pull Release Notes for latest Release in RnHub
 <a href="https://imgur.com/vlv19Tm"><img src="https://i.imgur.com/vlv19Tm.png" title="source: imgur.com" /></a>
@@ -90,3 +87,12 @@ Options include:
   - Build: Build for Release. 
   - Revision: Revision for Release.   
   - Semantic Label: Sematic pre-release Label.
+
+  ### Helpful Resources
+  - [ReleaseNotesHub website](https://www.demo.releasenoteshub.com)
+  - [Help Center](http://support.releasenoteshub.com)
+  - [GitHub](https://github.com/ReleaseNotesHub)
+  - [Twitter](https://twitter.com/ReleaseNotesHub)
+  - [Facebook](https://www.facebook.com/ReleaseNotesHub)
+  - [YouTube](https://www.youtube.com/channel/UCX7IYTohJCCTKr32UveJbjw)    
+  - [Contact our team](http://support.releasenoteshub.com/form)      

@@ -1,6 +1,6 @@
 {
   "name": "rnh_trigger_pull_pipelinetask",
-  "version": "0.0.58",
+  "version": "0.0.59",
   "description": "Trigger ReleaseNotesHub pull for release notes.",
   "main": "index.js",
   "scripts": {
@@ -10,12 +10,18 @@
   "keywords": [
     "ReleaseNotesHub",
     "RnHub",
-    "ReleaseNotes"
+    "rnh",
+    "ReleaseNotes",
+    "Publish",
+    "DevOps",
+    "PipeLine",
+    "Release"
   ],
   "author": "ReleaseNotesHub",
   "license": "ISC",
   "dependencies": {
     "azure-pipelines-task-lib": "^2.8.0",
+    "tfx-cli": "^0.7.11",
     "typed-rest-client": "^1.5.0"
   }
 }

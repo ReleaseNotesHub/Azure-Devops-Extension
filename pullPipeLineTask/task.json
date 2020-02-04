@@ -3,14 +3,14 @@
   "name": "rnh_trigger_pull_pipelinetask",
   "friendlyName": "Trigger ReleaseNotesHub Pull.",
   "description": "Trigger ReleaseNotesHub pull for release notes.",
-  "helpUrl": "https://stg-rnh-api-as.azurewebsites.net/swagger",
+  "helpUrl": "https://demo.releasenoteshub.com",
   "helpMarkDown": "",
   "category": "Deploy",
   "author": "ReleaseNotesHub",
   "version": {
       "Major": 0,
       "Minor": 0,
-      "Patch": 58
+      "Patch": 59
   },
 
   "groups": [
@@ -66,19 +66,6 @@
         "required": false,
         "helpMarkDown": "Merge with previous release."
       },
-      {
-        "name": "mergeOptions",
-        "type": "radio",
-        "label": "Merge Options",
-        "required": true,
-        "defaultValue": "LastMergeOrPublished",
-        "helpMarkDown": "Select Merge Option.",
-        "visibleRule": "merge=true", 
-        "options": {
-          "LastMergeOrPublished": "Merge from Last merge point to current release. If no merge point exists, merge from last published release to current release.",  
-          "LastPublished": "Merge from last published release to current release."                        
-        }
-      },  
       {
           "name": "releaseOptions",
           "type": "radio",
