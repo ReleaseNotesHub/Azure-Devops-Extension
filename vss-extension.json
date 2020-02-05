@@ -38,13 +38,13 @@
     },    
     "links": {
         "repository": {
-          "uri": "https://stg-rnh-api-as.azurewebsites.net/swagger"
+          "uri": "https://demo.api.releasenoteshub.com/swagger"
         },
         "issues": {
-          "uri": "https://stg-rnh-api-as.azurewebsites.net/swagger"
+          "uri": "https://demo.api.releasenoteshub.com/swagger"
         },
         "support": {
-          "uri": "https://stg-rnh-api-as.azurewebsites.net/swagger"
+          "uri": "https://demo.api.releasenoteshub.com/swagger"
         }
       }, 
       "repository": {
@@ -80,8 +80,8 @@
               ],  
               "url": {
                 "displayName": "Server Url",
-                "value": "https://stg-rnh-api-as.azurewebsites.net",
-                "helpText": "The ReleaseNotesHub server Url, .e.g. 'https://stg-rnh-api-as.azurewebsites.net'"
+                "value": "https://demo.api.releasenoteshub.com",
+                "helpText": "The ReleaseNotesHub server Url, .e.g. 'https://demo.api.releasenoteshub.com'"
               },       
             "dataSources": [
                 {
