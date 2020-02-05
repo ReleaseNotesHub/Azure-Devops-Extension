@@ -14,8 +14,8 @@ With RnHub the creation of Release Notes becomes another step within your CI/CD 
 Before adding any Build or Release tasks to your process, configure a "ReleaseNotesHub" service connection in the Project Settings under Service connections.
 
 Options include:
-  - Server Url: https://demo.api.releasenoteshub.com
-  - API Token: ApiKey as retrieved from your user profile https://www.demo.releasenoteshub.com/profile. Please note the prefix “ApiKey” is required!
+  - Server Url: https://api.releasenoteshub.com
+  - API Token: ApiKey as retrieved from your user profile https://www.releasenoteshub.com/profile. Please note the prefix “ApiKey” is required!
 
 <a href="https://imgur.com/6zTIHRs"><img src="https://i.imgur.com/6zTIHRs.png" title="source: imgur.com" width="40%"  height="40%"/></a>
 
@@ -91,7 +91,7 @@ Options include:
   - Semantic Label: Sematic pre-release Label.
 
   ### Helpful Resources
-  - [ReleaseNotesHub website](https://www.demo.releasenoteshub.com)
+  - [ReleaseNotesHub website](https://www.releasenoteshub.com)
   - [Help Center](http://support.releasenoteshub.com)
   - [GitHub](https://github.com/ReleaseNotesHub)
   - [Twitter](https://twitter.com/ReleaseNotesHub)
