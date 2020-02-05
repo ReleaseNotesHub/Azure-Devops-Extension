@@ -17,7 +17,7 @@ Options include:
   - Server Url: https://demo.api.releasenoteshub.com
   - API Token: ApiKey as retrieved from your user profile https://www.demo.releasenoteshub.com/profile. Please note the prefix “ApiKey” is required!
 
-<a href="https://imgur.com/blaW27J"><img src="https://i.imgur.com/blaW27J.png?1" title="source: imgur.com" /></a>
+<a href="https://imgur.com/6zTIHRs"><img src="https://i.imgur.com/6zTIHRs.png" title="source: imgur.com" width="40%"  height="40%"/></a>
 
 ### Tasks and Widgets
 This extension adds the following tasks:
