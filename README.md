@@ -4,9 +4,11 @@ ReleaseNotesHub is a SaaS solution that automates the generation and publication
 RnHub has reinvented the way in which release notes are captured, stored and made available to the customer.
 It does'nt produce a static document or wiki article for a release. Instead, RnHub is a search engine for release notes. The platform allows the consumer to search, discover and explore changes made to an app, service or software solution.
 
+<a href="https://imgur.com/osp2Dhl"><img src="https://i.imgur.com/osp2Dhl.png" title="source: imgur.com" width="50%"  height="50%"/></a>
+
 With RnHub the creation of Release Notes becomes another step within your CI/CD pipeline. With the appropriate permission, RnHub can pull or receive content from any ticket or task management system which can then be aggregated, sanitised and published via the RnHub platform. RnHub can pull content from many systems including TFS, Azure Devops, GitHub, Jira and Asana.
 
-<a  href="https://imgur.com/lgLUA41"><img  src="https://i.imgur.com/lgLUA41.gif"  width="40%"  height="40%"  title="source: imgur.com"  /></a>
+<a href="https://imgur.com/6PStpRa"><img src="https://i.imgur.com/6PStpRa.png" title="source: imgur.com" width="50%"  height="50%"/></a>
 
 ### Add a service connection to ReleaseNotesHub
 Before adding any Build or Release tasks to your process, configure a "ReleaseNotesHub" service connection in the Project Settings under Service connections.
@@ -15,7 +17,7 @@ Options include:
   - Server Url: https://demo.api.releasenoteshub.com
   - API Token: ApiKey as retrieved from your user profile https://www.demo.releasenoteshub.com/profile. Please note the prefix “ApiKey” is required!
 
-<a href="https://imgur.com/zqSz36L"><img src="https://i.imgur.com/zqSz36L.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/blaW27J"><img src="https://i.imgur.com/blaW27J.png?1" title="source: imgur.com" /></a>
 
 ### Tasks and Widgets
 This extension adds the following tasks:
@@ -31,10 +33,10 @@ Options include:
   - Merge Release: Merge notes from previous merge point or published release.
 
 #### Pull Release Notes for latest Release in RnHub
-<a href="https://imgur.com/vlv19Tm"><img src="https://i.imgur.com/vlv19Tm.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/JqiWNWa"><img src="https://i.imgur.com/JqiWNWa.png" title="source: imgur.com" /></a>
 
 #### Pull Release notes for BuildNumber
-<a href="https://imgur.com/psGLTPQ"><img src="https://i.imgur.com/psGLTPQ.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/sLANrxD"><img src="https://i.imgur.com/sLANrxD.png" title="source: imgur.com" /></a>
 
 Options include:
   - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
@@ -46,7 +48,7 @@ Options include:
     - Release Description: Release description to use when creating a new release.
 
 #### Pull Release notes for Version
-<a href="https://imgur.com/ocicfPe"><img src="https://i.imgur.com/ocicfPe.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/VHKBYU7"><img src="https://i.imgur.com/VHKBYU7.png" title="source: imgur.com" /></a>
 
 Options include:
   - Major Version: Major version for release.
@@ -70,7 +72,7 @@ Options include:
     - [Opition 2] Publish Release notes for Version and latest Revision.
 
 #### Publish Release notes for BuildNumber and latest Revision
-<a href="https://imgur.com/haLiuc6"><img src="https://i.imgur.com/haLiuc6.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/JA5214z"><img src="https://i.imgur.com/JA5214z.png" title="source: imgur.com" /></a>
 
 Options include:
   - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
@@ -79,7 +81,7 @@ Options include:
   - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*))'. 
 
 #### Publish Release notes for Version and latest Revision
-<a href="https://imgur.com/Accg9KJ"><img src="https://i.imgur.com/Accg9KJ.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/jIYHXef"><img src="https://i.imgur.com/jIYHXef.png" title="source: imgur.com" /></a>
 
 Options include:
   - Major Version: Major version for release.
