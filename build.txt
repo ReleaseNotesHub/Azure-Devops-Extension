@@ -2,7 +2,16 @@ https://docs.microsoft.com/en-us/azure/devops/extend/develop/add-build-task?view
 
 https://montemagno.com/building-vsts-tasks-with-typescript-and-vs-code/
 
-
+For publishPipeLineTask
+npm install --save-dev typescript
 npm run tsc
 
+For pullPipeLineTask
+npm install --save-dev typescript
+npm run tsc
+
+For Azure-Devops-Extension
+npm install --save-dev typescript
+npm install azure-pipelines-task-lib --save
+npm i -g tfx-cli
 tfx extension create --manifest-globs vss-extension.json
