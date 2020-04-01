@@ -20,8 +20,14 @@
   "author": "ReleaseNotesHub",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^2.8.0",
+    "azure-pipelines-task-lib": "^2.9.3",
     "tfx-cli": "^0.7.11",
-    "typed-rest-client": "^1.5.0"
+    "typed-rest-client": "^1.5.0",
+    "util": "^0.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.0",
+    "@types/q": "^1.5.2",
+    "typescript": "^3.7.5"
   }
 }

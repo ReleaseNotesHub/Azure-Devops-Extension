@@ -1,6 +1,6 @@
 import tl = require('azure-pipelines-task-lib/task');
 import httpc = require('typed-rest-client/HttpClient');
-let serviceValue: string;
+let serviceValue: string | undefined = '';
 let spaceValue: string;
 let projectValue: string;
 let publishOptionsValue: string;
