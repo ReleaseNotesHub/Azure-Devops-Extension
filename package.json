@@ -1,6 +1,6 @@
 {
   "name": "rnh_trigger_pipelinetask",
-  "version": "0.0.60",
+  "version": "0.0.61",
   "description": "Trigger ReleaseNotesHub events",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,7 +22,7 @@
     "@types/node": "^12.7.1",
     "@types/q": "^1.5.2",
     "tfx-cli": "^0.7.8",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "azure-pipelines-task-lib": "^2.9.3",

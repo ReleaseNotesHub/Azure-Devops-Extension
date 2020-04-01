@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "rnh-pipelinetasks",
     "name": "ReleaseNotesHub PipeLine Tasks",
-    "version": "0.0.60",
+    "version": "0.0.61",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
