@@ -3,14 +3,14 @@
     "name": "rnh_trigger_publish_pipelinetask",
     "friendlyName": "Trigger ReleaseNotesHub Publish Release.",
     "description": "Trigger ReleaseNotesHub publish release notes.",
-    "helpUrl": "https://demo.releasenoteshub.com",
+    "helpUrl": "https://www.releasenoteshub.com",
     "helpMarkDown": "",
     "category": "Deploy",
     "author": "ReleaseNotesHub",
     "version": {
-        "Major": 0,
+        "Major": 1,
         "Minor": 0,
-        "Patch": 61
+        "Patch": 0
     },
    
     "instanceNameFormat": "Trigger ReleaseNotesHub Publish",

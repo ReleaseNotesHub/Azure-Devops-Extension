@@ -3,14 +3,14 @@
   "name": "rnh_trigger_pull_pipelinetask",
   "friendlyName": "Trigger ReleaseNotesHub Pull.",
   "description": "Trigger ReleaseNotesHub pull for release notes.",
-  "helpUrl": "https://demo.releasenoteshub.com",
+  "helpUrl": "https://www.releasenoteshub.com",
   "helpMarkDown": "",
   "category": "Deploy",
   "author": "ReleaseNotesHub",
   "version": {
-      "Major": 0,
+      "Major": 1,
       "Minor": 0,
-      "Patch": 61
+      "Patch": 0
   },
 
   "groups": [
