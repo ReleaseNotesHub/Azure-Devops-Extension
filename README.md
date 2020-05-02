@@ -1,6 +1,6 @@
 ## Welcome to ReleaseNotesHub
 ### Release Your Potential
-ReleaseNotesHub is a SaaS solution that automates the generation and publication of release notes.
+ReleaseNotesHub is a B2B\B2C SaaS solution that automates the generation and publication of release notes.
 RnHub has reinvented the way in which release notes are captured, stored and made available to the customer.
 It does'nt produce a static document or wiki article for a release. Instead, RnHub is a search engine for release notes. The platform allows the consumer to search, discover and explore changes made to an app, service or software solution.
 
