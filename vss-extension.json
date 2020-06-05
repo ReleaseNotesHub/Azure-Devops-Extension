@@ -1,14 +1,18 @@
 {
     "manifestVersion": 1,
     "id": "rnh-pipelinetasks",
-    "name": "ReleaseNotesHub PipeLine Tasks",
+    "name": "ReleaseNotesHub",
     "version": "1.0.0",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
-    ],    
+    ],  
+    "public": true,   
+    "galleryFlags": [
+        "Preview"
+    ],        
     "description": "Tools for integrating with ReleaseNotesHub.",
     "tags": [
         "Notes",
@@ -38,18 +42,18 @@
     },    
     "links": {
         "repository": {
-          "uri": "https://api.releasenoteshub.com/swagger"
+          "uri": "https://github.com/ReleaseNotesHub/Azure-Devops-Extension"
         },
         "issues": {
-          "uri": "https://api.releasenoteshub.com/swagger"
+          "uri": "https://github.com/ReleaseNotesHub/Azure-Devops-Extension/issues"
         },
         "support": {
-          "uri": "https://api.releasenoteshub.com/swagger"
+          "uri": "https://support.releasenoteshub.com/"
         }
       }, 
       "repository": {
         "type": "git",
-        "uri": "https://github.com/thinkabouthub/Rnh"
+        "uri": "https://github.com/ReleaseNotesHub/Azure-Devops-Extension"
       },    
       "branding": {
         "color": "#F32894",
