@@ -2,7 +2,7 @@
     "id": "6B70386A-F361-429F-AA56-2A87BB4E75E4",
     "name": "rnh_trigger_publish_pipelinetask",
     "friendlyName": "Trigger ReleaseNotesHub Publish Release.",
-    "description": "Trigger ReleaseNotesHub publish release notes.",
+    "description": "Trigger ReleaseNotesHub to publish release notes.",
     "helpUrl": "https://www.releasenoteshub.com",
     "helpMarkDown": "",
     "category": "Deploy",
