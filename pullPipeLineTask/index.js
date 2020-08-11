@@ -16,7 +16,6 @@ let spaceValue;
 let projectValue;
 let publishValue;
 let mergeValue;
-let mergeOptionsValue;
 let releaseOptionsValue;
 let releaseNameValue;
 let releaseDescriptionValue;
@@ -41,7 +40,6 @@ function run() {
             projectValue = tl.getInput('project', true);
             publishValue = tl.getInput('publish', true);
             mergeValue = tl.getInput("merge", true);
-            mergeOptionsValue = tl.getInput("mergeOptions", true);
             releaseOptionsValue = tl.getInput('releaseOptions', true);
             releaseNameValue = tl.getInput('releaseName', false);
             releaseDescriptionValue = tl.getInput('releaseDescription', false);
@@ -71,7 +69,6 @@ function run() {
                 console.log('projectValue', projectValue);
                 console.log('publishValue', publishValue);
                 console.log('mergeValue', mergeValue);
-                console.log('mergeOptionsValue', mergeOptionsValue);
                 console.log('releaseOptionsValue', releaseOptionsValue);
                 console.log('releaseNameValue', releaseNameValue);
                 console.log('releaseDescriptionValue', releaseDescriptionValue);
@@ -113,9 +110,6 @@ function runWithVersionVariable() {
     return __awaiter(this, void 0, void 0, function* () {
         if (isDebugOutput) {
             console.log('Executing RnHub Release Pull using BuildNumber.');
-        }
-        if (releaseNameValue == null) {
-            throw new Error("Release Name not set. This is a required value.");
         }
         if (versionNumberValue == null) {
             throw new Error("Version Number not set. This is a required value.");
@@ -171,14 +165,16 @@ function runWithVersionVariable() {
             data += ",\"preReleaseLabel\": \"" + versionLabel + "\"";
         }
         data += "}";
-        data += ",\"name\": \"" + releaseNameValue + "\"";
+        if (releaseNameValue !== null) {
+            data += ",\"name\": \"" + releaseNameValue + "\"";
+        }
         if (releaseDescriptionValue !== null) {
             data += ",\"description\": \"" + releaseDescriptionValue + "\"";
         }
         data += ",\"publish\":" + publishValue;
         data += ",\"createOnNotFound\":" + createOnNotFoundValue;
         data += ",\"merge\":" + mergeValue;
-        data += ",\"mergePoint\": \"" + mergeOptionsValue + "\"";
+        data += ",\"mergePoint\": \"" + "1" + "\"";
         data += "}";
         yield runHttpPost(url, data);
     });
@@ -187,9 +183,6 @@ function runWithVersion() {
     return __awaiter(this, void 0, void 0, function* () {
         if (isDebugOutput) {
             console.log('Executing RnHub Release Pull using Version.');
-        }
-        if (releaseNameValue == null) {
-            throw new Error("Release Name not set. This is a required value.");
         }
         if (majorVersionValue == null) {
             throw new Error("Major Release Version not set. This is a required value.");
@@ -220,14 +213,16 @@ function runWithVersion() {
             data += ",\"preReleaseLabel\": \"" + preReleaseLabelValue + "\"";
         }
         data += "}";
-        data += ",\"name\": \"" + releaseNameValue + "\"";
+        if (releaseNameValue !== null) {
+            data += ",\"name\": \"" + releaseNameValue + "\"";
+        }
         if (releaseDescriptionValue !== null) {
             data += ",\"description\": \"" + releaseDescriptionValue + "\"";
         }
         data += ",\"publish\":" + publishValue;
         data += ",\"createOnNotFound\":" + createOnNotFoundValue;
         data += ",\"merge\":" + mergeValue;
-        data += ",\"mergePoint\": \"" + mergeOptionsValue + "\"";
+        data += ",\"mergePoint\": \"" + "1" + "\"";
         data += "}";
         yield runHttpPost(url, data);
     });
@@ -241,7 +236,7 @@ function runLatestRelease() {
         let data = "{";
         data += "{\"publish\":" + publishValue + "}";
         data += ",\"merge\":" + mergeValue;
-        data += ",\"mergePoint\":" + mergeOptionsValue;
+        data += ",\"mergePoint\":" + "1";
         data += "}";
         yield runHttpPost(url, data);
     });

@@ -15,7 +15,7 @@ Before adding any Build or Release tasks to your process, configure a "ReleaseNo
 
 Options include:
   - Server Url: https://api.releasenoteshub.com
-  - API Token: ApiKey as retrieved from your user profile https://www.releasenoteshub.com/profile. Please note the prefix “ApiKey” is required!
+  - API Token: ApiKey as retrieved from your user profile https://www.releasenoteshub.com/profile. 
 
 <a href="https://i.imgur.com/wOMcV5h.png"><img src="https://i.imgur.com/wOMcV5h.png" title="source: imgur.com" width="25%"/></a>
 

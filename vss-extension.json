@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "rnh-pipelinetasks",
     "name": "ReleaseNotesHub",
-    "version": "1.0.3",
+    "version": "1.0.13",
     "publisher": "ReleaseNotesHub",
     "targets": [
         {
@@ -65,7 +65,7 @@
         },
         {
           "path": "publishPipeLineTask"
-        } 
+        }
     ],
     "contributions": [
         {
@@ -76,32 +76,38 @@
             "properties": {
               "name": "ReleaseNotesHub",
               "displayName": "ReleaseNotesHub",
-              "headers": [
-                {
-                    "name": "Authorization",
-                    "value": "{{endpoint.apitoken}}"
-                }
-              ],  
               "url": {
                 "displayName": "Server Url",
                 "value": "https://api.releasenoteshub.com",
                 "isVisible": "false",
-                "helpText": "The ReleaseNotesHub server Url, .e.g. 'https://api.releasenoteshub.com'"
-              },       
-            "dataSources": [
-                {
-                  "name": "ReleaseNotesHub",
-                  "endpointUrl": "{{endpoint.url}}api/spaces/getbycurrentuser",
-                  "resultSelector": "jsonpath:$.results[*]"
-                }
-      
-              ],
+                "helpText": "The ReleaseNotesHub server Url .e.g. 'https://api.releasenoteshub.com'"
+              },                
               "authenticationSchemes": [
                 {
-                  "type": "ms.vss-endpoint.endpoint-auth-scheme-token"
+                  "type": "ms.vss-endpoint.endpoint-auth-scheme-token",
+                  "headers": [
+                    {
+                        "name": "Authorization",
+                        "value": "ApiKey {{endpoint.apitoken}}"
+                    }
+                  ],   
+                  "inputDescriptors": [
+                    {
+                        "id": "apitoken",
+                        "name": "i18n:API Token",
+                        "description": "i18n:API Token for connection. Retrieve Token from ReleaseNotesHub User Profile view .e.g. 'API-b050354e-f581-4d03-a49e-e2165ddb777f'.",
+                        "inputMode": "textbox",
+                        "isConfidential": true,
+                        "validation": {
+                            "isRequired": true,
+                            "dataType": "string",
+                            "maxLength": 300
+                        }
+                    }   
+                  ]                      
                 }
               ],
-              "helpMarkDown": "The ReleaseNotesHub URL must be accessible from both VSTS and any agents that are running builds or releases."
+              "helpMarkDown": "<a href=\"https://marketplace.visualstudio.com/items?itemName=ReleaseNotesHub.rnh-pipelinetasks\" target=\"_blank\"><b>Learn More</b></a>"
             },
             "icons": {
                 "default": "images/icon.png",

@@ -5,7 +5,6 @@ let spaceValue: string;
 let projectValue: string;
 let publishValue: string;
 let mergeValue: string;
-let mergeOptionsValue: string;
 let releaseOptionsValue: string;
 let releaseNameValue: string;
 let releaseDescriptionValue: string;
@@ -28,8 +27,7 @@ async function run() {
         spaceValue = tl.getInput('space', true);
         projectValue = tl.getInput('project', true);
         publishValue = tl.getInput('publish', true);
-        mergeValue = tl.getInput("merge", true);    
-        mergeOptionsValue = tl.getInput("mergeOptions", true);      
+        mergeValue = tl.getInput("merge", true);         
         releaseOptionsValue = tl.getInput('releaseOptions', true);
         releaseNameValue = tl.getInput('releaseName', false); 
         releaseDescriptionValue = tl.getInput('releaseDescription', false); 
@@ -62,8 +60,7 @@ async function run() {
             console.log('spaceValue', spaceValue);        
             console.log('projectValue', projectValue);       
             console.log('publishValue', publishValue);     
-            console.log('mergeValue', mergeValue);     
-            console.log('mergeOptionsValue', mergeOptionsValue);      
+            console.log('mergeValue', mergeValue);         
             console.log('releaseOptionsValue', releaseOptionsValue);       
             console.log('releaseNameValue', releaseNameValue);       
             console.log('releaseDescriptionValue', releaseDescriptionValue);        
@@ -106,9 +103,6 @@ async function run() {
 async function runWithVersionVariable() {
     if (isDebugOutput){
         console.log('Executing RnHub Release Pull using BuildNumber.');
-    }
-    if (releaseNameValue == null) {
-        throw new Error("Release Name not set. This is a required value.");
     }
     if (versionNumberValue == null) {
         throw new Error("Version Number not set. This is a required value.");
@@ -173,14 +167,16 @@ async function runWithVersionVariable() {
         data += ",\"preReleaseLabel\": \"" + versionLabel + "\"";
     }
     data += "}";   
-    data += ",\"name\": \"" + releaseNameValue + "\"";
+    if (releaseNameValue !== null) { 
+        data += ",\"name\": \"" + releaseNameValue + "\"";
+    }
     if (releaseDescriptionValue !== null) {
         data += ",\"description\": \"" + releaseDescriptionValue + "\"";
     }
     data += ",\"publish\":" + publishValue;
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
-    data += ",\"mergePoint\": \"" + mergeOptionsValue + "\"";      
+    data += ",\"mergePoint\": \"" + "1" + "\"";      
     data += "}";      
     await runHttpPost(url, data);
 }
@@ -188,9 +184,6 @@ async function runWithVersionVariable() {
 async function runWithVersion() {
     if (isDebugOutput){
         console.log('Executing RnHub Release Pull using Version.');
-    }
-    if (releaseNameValue == null) {
-        throw new Error("Release Name not set. This is a required value.");
     }
     if (majorVersionValue == null) {
         throw new Error("Major Release Version not set. This is a required value.");
@@ -223,14 +216,16 @@ async function runWithVersion() {
         data += ",\"preReleaseLabel\": \"" + preReleaseLabelValue + "\"";
     }
     data += "}";
-    data += ",\"name\": \"" + releaseNameValue + "\"";
+    if (releaseNameValue !== null) { 
+        data += ",\"name\": \"" + releaseNameValue + "\"";
+    }
     if (releaseDescriptionValue !== null) {
         data += ",\"description\": \"" + releaseDescriptionValue + "\"";
     }
     data += ",\"publish\":" + publishValue;
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
-    data += ",\"mergePoint\": \"" + mergeOptionsValue + "\"";    
+    data += ",\"mergePoint\": \"" + "1" + "\"";    
     data += "}";      
     await runHttpPost(url, data);
 }
@@ -243,7 +238,7 @@ async function runLatestRelease() {
     let data: string = "{";    
     data += "{\"publish\":" + publishValue + "}";
     data += ",\"merge\":" + mergeValue;    
-    data += ",\"mergePoint\":" + mergeOptionsValue;      
+    data += ",\"mergePoint\":" + "1";      
     data += "}";      
     await runHttpPost(url, data);  
 }
