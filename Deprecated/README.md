@@ -1,6 +1,6 @@
 ## Welcome to ReleaseNotesHub
 ### Release Your Potential
-ReleaseNotesHub is a SaaS solution that automates the generation and publication of release notes.
+ReleaseNotesHub is a B2B\B2C SaaS solution that automates the generation and publication of release notes.
 RnHub has reinvented the way in which release notes are captured, stored and made available to the customer.
 It does'nt produce a static document or wiki article for a release. Instead, RnHub is a search engine for release notes. The platform allows the consumer to search, discover and explore changes made to an app, service or software solution.
 
@@ -10,12 +10,12 @@ With RnHub the creation of Release Notes becomes another step within your CI/CD 
 
 <a href="https://imgur.com/6PStpRa"><img src="https://i.imgur.com/6PStpRa.png" title="source: imgur.com" width="30%"/></a>
 
-### Add a service connection for ReleaseNotesHub
+### Add a service connection to ReleaseNotesHub
 Before adding any Build or Release tasks to your process, configure a "ReleaseNotesHub" service connection in the Project Settings under Service connections.
 
 Options include:
   - Server Url: https://api.releasenoteshub.com
-  - API Token: ApiKey as retrieved from your user profile https://www.releasenoteshub.com/profile.
+  - API Token: ApiKey as retrieved from your user profile https://www.releasenoteshub.com/profile. 
 
 <a href="https://i.imgur.com/wOMcV5h.png"><img src="https://i.imgur.com/wOMcV5h.png" title="source: imgur.com" width="25%"/></a>
 
@@ -98,4 +98,4 @@ Options include:
   - [Facebook](https://www.facebook.com/ReleaseNotesHub)
   - [LinkedIn](https://www.linkedin.com/company/releasenoteshub)
   - [YouTube](https://www.youtube.com/channel/UCX7IYTohJCCTKr32UveJbjw)    
-  - [Contact our team](http://support.releasenoteshub.com/form)      
+  - [Contact our team](http://support.releasenoteshub.com/form)        

@@ -84,30 +84,30 @@
               },                
               "authenticationSchemes": [
                 {
-                  "type": "ms.vss-endpoint.endpoint-auth-scheme-token",
+                  "type": "ms.vss-endpoint.endpoint-auth-scheme-token",  
+                  "inputDescriptors": [
+                    {
+                        "id": "apitoken",
+                        "name": "API Key",
+                        "description": "API key for connection to ReleaseNotesHub .e.g. 'API-b050354e-f581-4d03-a49e-e2165ddb777f'.",
+                        "inputMode": "passwordBox",
+                        "isConfidential": true,
+                        "validation": {
+                            "isRequired": true,
+                            "dataType": "string",
+                            "maxLength": 42
+                        }
+                    }   
+                  ],
                   "headers": [
                     {
                         "name": "Authorization",
                         "value": "ApiKey {{endpoint.apitoken}}"
                     }
-                  ],   
-                  "inputDescriptors": [
-                    {
-                        "id": "apitoken",
-                        "name": "i18n:API Token",
-                        "description": "i18n:API Token for connection. Retrieve Token from ReleaseNotesHub User Profile view .e.g. 'API-b050354e-f581-4d03-a49e-e2165ddb777f'.",
-                        "inputMode": "textbox",
-                        "isConfidential": true,
-                        "validation": {
-                            "isRequired": true,
-                            "dataType": "string",
-                            "maxLength": 300
-                        }
-                    }   
-                  ]                      
+                  ]                        
                 }
               ],
-              "helpMarkDown": "<a href=\"https://marketplace.visualstudio.com/items?itemName=ReleaseNotesHub.rnh-pipelinetasks\" target=\"_blank\"><b>Learn More</b></a>"
+              "helpMarkDown": "The ReleaseNotesHub URL must be accessible from any agents that are running builds or releases. See [here](https://marketplace.visualstudio.com/items?itemName=ReleaseNotesHub.rnh-pipelinetasks) for details on how to generate an API key."
             },
             "icons": {
                 "default": "images/icon.png",

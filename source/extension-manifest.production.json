@@ -1,0 +1,11 @@
+{
+    "id": "rnh-pipelinetasks",
+    "name": "ReleaseNotesHub",
+    "version": "set-by-pack.ps1",
+    "publisher": "ReleaseNotesHub",
+    "public": true,
+    "branding": {
+        "color": "#F32894",
+        "theme": "light"
+    }
+}

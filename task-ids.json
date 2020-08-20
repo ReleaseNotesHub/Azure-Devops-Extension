@@ -1,0 +1,14 @@
+{
+    "localtest": {
+        "rnh_trigger_publish_pipelinetask": "6B70386A-F361-429F-AA56-2A87BB4E75E4",
+        "rnh_trigger_pull_pipelinetask": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e"
+    },
+    "test": {
+        "rnh_trigger_publish_pipelinetask": "6B70386A-F361-429F-AA56-2A87BB4E75E4",
+        "rnh_trigger_pull_pipelinetask": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e"
+    },
+    "production": {
+        "rnh_trigger_publish_pipelinetask": "6B70386A-F361-429F-AA56-2A87BB4E75E4",
+        "rnh_trigger_pull_pipelinetask": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e"
+    }
+}

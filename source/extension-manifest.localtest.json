@@ -1,0 +1,11 @@
+{
+    "id": "rnh-pipelinetasks-localtest",
+    "name": "[LocalTest] ReleaseNotesHub",
+    "version": "set-by-pack.ps1",
+    "publisher": "ReleaseNotesHub",
+    "public": false,
+    "branding": {
+        "color": "#F32894",
+        "theme": "light"
+    }
+}
