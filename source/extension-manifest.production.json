@@ -1,6 +1,6 @@
 {
     "id": "rnh-pipelinetasks",
-    "name": "ReleaseNotesHub",
+    "name": "ReleaseNotesHub Integration",
     "version": "set-by-pack.ps1",
     "publisher": "ReleaseNotesHub",
     "public": true,

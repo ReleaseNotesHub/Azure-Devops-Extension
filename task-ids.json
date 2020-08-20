@@ -1,14 +1,17 @@
 {
     "localtest": {
-        "rnh_trigger_publish_pipelinetask": "6B70386A-F361-429F-AA56-2A87BB4E75E4",
-        "rnh_trigger_pull_pipelinetask": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e"
+        "rnh_trigger_publish_pipelinetask": "07d855ee-a839-4648-b59a-d35603e022ad",
+        "rnh_trigger_pull_pipelinetask": "04eaa16e-343d-4341-ac67-010349b0c727",
+        "rnh_wit_buildnumber_pipelinetask": "f5107fa9-f4b0-4974-bca8-72baf1fd79b5"
     },
     "test": {
-        "rnh_trigger_publish_pipelinetask": "6B70386A-F361-429F-AA56-2A87BB4E75E4",
-        "rnh_trigger_pull_pipelinetask": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e"
+        "rnh_trigger_publish_pipelinetask": "cf2577f6-1fcd-40f3-ad62-eb8134ae2b9b",
+        "rnh_trigger_pull_pipelinetask": "73e67464-c395-41fd-b53e-dd3358437540",
+        "rnh_wit_buildnumber_pipelinetask": "708838b3-c6aa-4c87-84de-f1145f94f81e"
     },
     "production": {
         "rnh_trigger_publish_pipelinetask": "6B70386A-F361-429F-AA56-2A87BB4E75E4",
-        "rnh_trigger_pull_pipelinetask": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e"
+        "rnh_trigger_pull_pipelinetask": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e",
+        "rnh_wit_buildnumber_pipelinetask": "8caea22b-4686-45c2-9e18-7253b313f844"
     }
 }

@@ -147,6 +147,16 @@
           "properties": {
               "name": "tasks/rnh_trigger_publish_pipelinetask"
           }
-      }                
+        },
+        {
+          "id": "rnh_wit_buildnumber_pipelinetask",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+              "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+              "name": "tasks/rnh_wit_buildnumber_pipelinetask"
+          }
+        }                    
     ]
 }

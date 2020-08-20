@@ -133,6 +133,16 @@
           "properties": {
               "name": "publishPipeLineTask"
           }
-      }                
+        },
+        {
+          "id": "rnh_wit_buildnumber_pipelinetask",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+              "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+              "name": "buildnumberPipeLineTask"
+          }
+        }                   
     ]
 }

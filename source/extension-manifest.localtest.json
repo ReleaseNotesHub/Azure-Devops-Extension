@@ -1,6 +1,6 @@
 {
     "id": "rnh-pipelinetasks-localtest",
-    "name": "[LocalTest] ReleaseNotesHub",
+    "name": "[LocalTest] ReleaseNotesHub Integration",
     "version": "set-by-pack.ps1",
     "publisher": "ReleaseNotesHub",
     "public": false,
