@@ -23,6 +23,7 @@ Options include:
 This extension adds the following tasks:
 - [Trigger ReleaseNotesHub Pull](#TriggerPull)
 - [Trigger ReleaseNotesHub Publish Release](#TriggerPublish)
+- [Update BuildNumber Field](#UpdateBuildNumber)
 
 ### <a id="TriggerPull"></a>Trigger ReleaseNotesHub Pull
 Options include:
@@ -33,22 +34,23 @@ Options include:
   - Merge Release: Merge notes from previous merge point or published release.
 
 #### Pull Release Notes for latest Release in RnHub
-<a href="https://imgur.com/JqiWNWa"><img src="https://i.imgur.com/JqiWNWa.png" title="source: imgur.com" width="40%"/></a>
+<a href="https://imgur.com/oCXYw7f"><img src="https://i.imgur.com/oCXYw7f.png" title="source: imgur.com" width="40%"/></a>
 
 #### Pull Release notes for BuildNumber
-<a href="https://imgur.com/sLANrxD"><img src="https://i.imgur.com/sLANrxD.png" title="source: imgur.com" width="40%"/></a>
+<a href="https://imgur.com/pYBm8zs"><img src="https://i.imgur.com/pYBm8zs.png" title="source: imgur.com" width="40%"/></a>
 
 Options include:
   - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
   - Regex Filter to extract build number: Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.
   - Semantic Label: Sematic pre-release Label.
   - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*))'. 
-   - Create Release if not found: Create Release with version if not found.     
+  - Ignore if Release exists: If release already exists then ignore pull request.    
+  - Create Release if not found: Create Release with version if not found.     
     - Release Name: Release name to use when creating a new release.
     - Release Description: Release description to use when creating a new release.
 
 #### Pull Release notes for Version
-<a href="https://imgur.com/VHKBYU7"><img src="https://i.imgur.com/VHKBYU7.png" title="source: imgur.com" width="40%"/></a>
+<a href="https://imgur.com/icW6cGh"><img src="https://i.imgur.com/icW6cGh.png" title="source: imgur.com" width="40%"/></a>
 
 Options include:
   - Major Version: Major version for release.
@@ -56,6 +58,7 @@ Options include:
   - Build: Build for Release. 
   - Revision: Revision for Release.   
   - Semantic Label: Sematic pre-release Label.
+  - Ignore if Release exists: If release already exists then ignore pull request.      
   - Create Release if not found: Create Release with version if not found.     
     - Release Name: Release name to use when creating a new release.
     - Release Description: Release description to use when creating a new release.
@@ -72,7 +75,7 @@ Options include:
     - [Opition 2] Publish Release notes for Version and latest Revision.
 
 #### Publish Release notes for BuildNumber and latest Revision
-<a href="https://imgur.com/JA5214z"><img src="https://i.imgur.com/JA5214z.png" title="source: imgur.com" width="40%"/></a>
+<a href="https://imgur.com/1l1tUIy"><img src="https://i.imgur.com/1l1tUIy.png" title="source: imgur.com" width="40%"/></a>
 
 Options include:
   - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
@@ -81,7 +84,7 @@ Options include:
   - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*))'. 
 
 #### Publish Release notes for Version and latest Revision
-<a href="https://imgur.com/jIYHXef"><img src="https://i.imgur.com/jIYHXef.png" title="source: imgur.com" width="40%"/></a>
+<a href="https://imgur.com/QS6dyd2"><img src="https://i.imgur.com/QS6dyd2.png" title="source: imgur.com" width="40%"/></a>
 
 Options include:
   - Major Version: Major version for release.
@@ -89,6 +92,8 @@ Options include:
   - Build: Build for Release. 
   - Revision: Revision for Release.   
   - Semantic Label: Sematic pre-release Label.
+
+  ### <a id="UpdateBuildNumber"></a>Update BuildNumber Field
 
   ### Helpful Resources
   - [ReleaseNotesHub website](https://www.releasenoteshub.com)
