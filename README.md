@@ -94,6 +94,15 @@ Options include:
   - Semantic Label: Sematic pre-release Label.
 
   ### <a id="UpdateBuildNumber"></a>Update BuildNumber Field
+  <a href="https://imgur.com/8rPwhPH"><img src="https://i.imgur.com/8rPwhPH.png" title="source: imgur.com" width="40%"/></a>
+  
+  Options include:
+  - WorkItem Type
+  - WorkItem State
+  - Override Field Value: Always override target field with curret build number. 
+  - Field Name: Target Field Name for BuildNumber e.g. 'Custom.BuildNumber'.
+  - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
+  - Regex Filter to extract build number: Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.
 
   ### Helpful Resources
   - [ReleaseNotesHub website](https://www.releasenoteshub.com)

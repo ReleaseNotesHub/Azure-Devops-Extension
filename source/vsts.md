@@ -23,6 +23,7 @@ Options include:
 This extension adds the following tasks:
 - [Trigger ReleaseNotesHub Pull](#TriggerPull)
 - [Trigger ReleaseNotesHub Publish Release](#TriggerPublish)
+- [Update BuildNumber Field](#UpdateBuildNumber)
 
 ### <a id="TriggerPull"></a>Trigger ReleaseNotesHub Pull
 Options include:
@@ -43,7 +44,8 @@ Options include:
   - Regex Filter to extract build number: Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.
   - Semantic Label: Sematic pre-release Label.
   - Regex Filter to extract Semantic Label: Regular expression filter to get label from the build name .e.g. '((-)(.*))'. 
-   - Create Release if not found: Create Release with version if not found.     
+  - Ignore if Release exists: If release already exists then ignore pull request.    
+  - Create Release if not found: Create Release with version if not found.     
     - Release Name: Release name to use when creating a new release.
     - Release Description: Release description to use when creating a new release.
 
@@ -56,6 +58,7 @@ Options include:
   - Build: Build for Release. 
   - Revision: Revision for Release.   
   - Semantic Label: Sematic pre-release Label.
+  - Ignore if Release exists: If release already exists then ignore pull request.      
   - Create Release if not found: Create Release with version if not found.     
     - Release Name: Release name to use when creating a new release.
     - Release Description: Release description to use when creating a new release.
@@ -89,6 +92,17 @@ Options include:
   - Build: Build for Release. 
   - Revision: Revision for Release.   
   - Semantic Label: Sematic pre-release Label.
+
+  ### <a id="UpdateBuildNumber"></a>Update BuildNumber Field
+  <a href="https://imgur.com/8rPwhPH"><img src="https://i.imgur.com/8rPwhPH.png" title="source: imgur.com" width="40%"/></a>
+  
+  Options include:
+  - WorkItem Type
+  - WorkItem State
+  - Override Field Value: Always override target field with curret build number. 
+  - Field Name: Target Field Name for BuildNumber e.g. 'Custom.BuildNumber'.
+  - Version Number: Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.
+  - Regex Filter to extract build number: Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.
 
   ### Helpful Resources
   - [ReleaseNotesHub website](https://www.releasenoteshub.com)
