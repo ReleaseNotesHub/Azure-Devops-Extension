@@ -31,7 +31,7 @@
         "Publish"
       ],    
     "categories": [
-        "Build and release"
+        "Azure Pipelines"
     ],
     "icons": {
         "default": "extension-icon.png"

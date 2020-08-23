@@ -14,7 +14,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 0
+        "Patch": 3
     },
     "demands": [],
     "minimumAgentVersion": "2.115.0", 
@@ -25,185 +25,84 @@
           "isExpanded": false
         }
       ],       
-    "instanceNameFormat": "Trigger ReleaseNotesHub Pull",
+    "instanceNameFormat": "Update BuildNumber Field",
     "inputs": [
         {
-          "name": "ReleaseNotesHubService",
-          "type": "connectedService:ReleaseNotesHub",
-          "label": "ReleaseNotesHub service/server end point",
-          "defaultValue": "",
-          "required": true,
-          "helpMarkDown": "Select the ReleaseNotesHub end point to use. If needed, click on 'manage', and add a new service endpoint of type 'ReleaseNotesHub'"
-        },
-        {
-          "name": "space",
+          "name": "workItemType",
           "type": "pickList",
-          "label": "Space",
-          "required": true,
-          "helpMarkDown": "Select Space containing the ReleaseNotesHub Project. Spaces where you have at least Contributor access are displayed.",
+          "label": "WorkItem Type",
+          "required": false,
+          "helpMarkDown": "Select a WorkItem Type containing BuildNumber Field.",
           "properties": {
             "EditableOptions": "True"
           }
-        },
-        {
-            "name": "project",
-            "type": "pickList",
-            "label": "Project",
-            "required": true,
-            "helpMarkDown": "Select the Project.",
-            "properties": {
-              "EditableOptions": "True"
-            }
-        },
-        {
-            "name": "publish",
-            "type": "boolean",
-            "label": "Publish Release",
-            "defaultValue": "false",
-            "required": false,
-            "helpMarkDown": "Publish Release."
-        }, 
-        {
-          "name": "merge",
-          "type": "boolean",
-          "label": "Merge Release",
-          "defaultValue": "false",
-          "required": false,
-          "helpMarkDown": "Merge with previous release."
-        },
-        {
-            "name": "releaseOptions",
-            "type": "radio",
-            "label": "Release",
-            "required": true,
-            "defaultValue": "WithVersion",
-            "helpMarkDown": "Select Release.",
-            "options": {
-              "LatestRelease": "Pull Release Notes for latest Release in ReleaseNotesHub.",  
-              "WithVersionVariable": "Pull Release notes for BuildNumber.",                  
-              "WithVersion": "Pull Release notes for Version."        
-            }
-        },                  
-        {
-          "name": "withVersionVariable_versionNumber",
-          "type": "string",
-          "label": "Version Number",
-          "defaultValue": "$(Build.BuildNumber)",
-          "required": false,
-          "helpMarkDown": "Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.",
-          "visibleRule": "releaseOptions=WithVersionVariable"
         },  
         {
-          "name": "withVersionVariable_versionNumberExpression",
-          "type": "string",
-          "label": "Regex Filter to extract build number",
-          "defaultValue": "\\d+\\.\\d+\\.\\d+\\.\\d+",
+          "name": "workItemStatus",
+          "type": "pickList",
+          "label": "WorkItem State",
+          "defaultValue": "",
           "required": false,
-          "helpMarkDown": "Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.",
-          "visibleRule": "releaseOptions=WithVersionVariable"
-        },         
+          "helpMarkDown": "Select a WorkItem State.",
+          "properties": {
+            "EditableOptions": "True"
+          }
+        },  
         {
-            "name": "withVersion_majorVersion",
+          "name": "overrideField",
+          "type": "boolean",
+          "label": "Override Field Value",
+          "defaultValue": "false",
+          "required": false,
+          "helpMarkDown": "Always override target field with curret build number."
+        },                                 
+        {
+            "name": "fieldName",
             "type": "string",
-            "label": "Major Version",
+            "label": "Field Name",
             "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Major Version for Release.",
-            "visibleRule": "releaseOptions=WithVersion"
-          },     
+            "required": true,
+            "helpMarkDown": "Target Field Name for BuildNumber e.g. 'Custom.BuildNumber'"
+          },
           {
-            "name": "withVersion_minorVersion",
+            "name": "versionNumberVariable",
             "type": "string",
-            "label": "Minor Version",
-            "defaultValue": "",
+            "label": "Version Number",
+            "defaultValue": "$(Build.BuildNumber)",
             "required": false,
-            "helpMarkDown": "Minor Version for Release.",
-            "visibleRule": "releaseOptions=WithVersion"
+            "helpMarkDown": "Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'."
           },  
           {
-            "name": "withVersion_buildVersion",
+            "name": "versionNumberExpression",
             "type": "string",
-            "label": "Build",
-            "defaultValue": "",
+            "label": "Regex Filter to extract build number",
+            "defaultValue": "\\d+\\.\\d+\\.\\d+\\.\\d+",
             "required": false,
-            "helpMarkDown": "Build for Release.",
-            "visibleRule": "releaseOptions=WithVersion"
-          },     
-          {
-            "name": "withVersion_revisionVersion",
-            "type": "string",
-            "label": "Revision",
-            "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Revision for Release.",
-            "visibleRule": "releaseOptions=WithVersion"
-          },    
-          {
-            "name": "preReleaseLabel",
-            "type": "string",
-            "label": "Semantic Label",
-            "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Sematic pre-release Label.",
-            "visibleRule": "releaseOptions=WithVersion || releaseOptions=WithVersionVariable"
-          },
-          {
-            "name": "withVersionVariable_labelExpression",
-            "type": "string",
-            "label": "Regex Filter to extract Semantic Label",
-            "defaultValue": "((-)(.*))",
-            "required": false,
-            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '((-)(.*))",
-            "visibleRule": "releaseOptions=WithVersionVariable"
-          },    
-          {
-              "name": "createOnNotFound",
-              "type": "boolean",
-              "label": "Create Release if not found",
-              "defaultValue": "false",
-              "required": false,
-              "helpMarkDown": "Create Release with version if not found.",
-              "visibleRule": "releaseOptions=WithVersion  || releaseOptions=WithVersionVariable"
-          },
-          {
-            "name": "releaseName",
-            "type": "string",
-            "label": "Release Name",
-            "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Release Name.",
-            "visibleRule": "createOnNotFound=true"
-          },
-          {
-            "name": "releaseDescription",
-            "type": "string",
-            "label": "Release Description",
-            "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Release Description.",
-            "visibleRule": "createOnNotFound=true"
-          }                                         
+            "helpMarkDown": "Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'."
+          }                            
       ],
-      "dataSourceBindings": [        
+      "dataSourceBindings": [
         {
-          "target": "space",
-          "endpointId": "$(ReleaseNotesHubService)",
-          "dataSourceName": "SpacesAll",
-          "resultTemplate": "{\"Value\":\"{{{id}}}\",\"DisplayValue\":\"{{{name}}}\"}"
-        },          
+            "target": "workItemType",
+            "endpointId": "tfs:teamfoundation",
+            "endpointURL": "{{endpoint.url}}/{{system.teamProject}}/_apis/wit/workitemtypes?api-version=4.1",
+            "resultSelector": "jsonpath:$.value[*]",
+            "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
+        },
         {
-          "target": "project",
-          "endpointId": "$(ReleaseNotesHubService)",
-          "dataSourceName": "ProjectsForSpace",
-          "parameters": {
-            "SpaceId": "$(space)"
-          },   
-          "resultTemplate": "{\"Value\":\"{{{id}}}\",\"DisplayValue\":\"{{{name}}}\"}"
-        }         
-      ],    
+          "target": "workItemStatus",
+          "endpointId": "tfs:teamfoundation",
+          "endpointURL": "{{endpoint.url}}/{{system.teamProject}}/_apis/wit/workitemtypes/$(workItemType)/states?api-version=4.1-preview.1",
+          "resultSelector": "jsonpath:$.value[*]",
+          "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
+      }
+      
+    ],  
     "execution": {
         "Node": {
             "target": "index.js"
         }
     }
   }
+
+ 

@@ -2,6 +2,9 @@ https://docs.microsoft.com/en-us/azure/devops/extend/develop/add-build-task?view
 
 https://montemagno.com/building-vsts-tasks-with-typescript-and-vs-code/
 
+https://stackoverflow.com/questions/52942894/unable-to-display-team-projects-list-in-azure-devops-extension
+https://docs.microsoft.com/en-us/rest/api/azure/devops/wit/work%20item%20types/list?view=azure-devops-rest-6.0
+
 
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 npm config set script-shell "C:\Program Files\git\bin\bash.exe"
@@ -9,4 +12,4 @@ npm config delete script-shell
 
 npm install --no-save
 npm run build
-./pack.ps1 -environment localtest -version "x.x.x"
+./pack.ps1 -environment test -version "x.x.x"

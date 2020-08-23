@@ -1,5 +1,6 @@
 import tl = require('azure-pipelines-task-lib/task');
 import httpc = require('typed-rest-client/HttpClient');
+
 let serviceValue: string | undefined = '';
 let spaceValue: string;
 let projectValue: string;
@@ -16,6 +17,7 @@ var endPointUrlValue: any;
 var endPointApiKey: any;
 let isDebugOutput: boolean;
 const testVersionFormatExpression: string = "^(\\d+\\.)?(\\*|\\d+)$|^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$|^(\\d+\\.)?(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$";
+
 async function run() {
     try {
         serviceValue = tl.getInput('ReleaseNotesHubService', true);
@@ -76,6 +78,7 @@ async function run() {
     }
     catch (err) {
         if (isDebugOutput){
+            console.log("An exception was thrown while triggering a ReleaseNotesHub Publish.");
             console.log('Error', err);
         }
         tl.setResult(tl.TaskResult.Failed, err.message);

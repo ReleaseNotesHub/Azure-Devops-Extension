@@ -29,18 +29,9 @@ function CleanNodeModules() {
         }
     }
 
-    Invoke-Expression "$command $($basePath)/dist/tasks/CreateOctopusRelease/CreateOctopusReleaseV3/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/CreateOctopusRelease/CreateOctopusReleaseV4/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/Deploy/DeployV3/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/Deploy/DeployV4/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/OctoCli/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/OctoInstaller/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/Pack/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/BuildInformation/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/Promote/PromoteV3/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/Promote/PromoteV4/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/Push/PushV3/node_modules"
-    Invoke-Expression "$command $($basePath)/dist/tasks/Push/PushV4/node_modules"
+    Invoke-Expression "$command $($basePath)/dist/tasks/rnh_trigger_publish_pipelinetask/node_modules"
+    Invoke-Expression "$command $($basePath)/dist/tasks/rnh_trigger_pull_pipelinetask/node_modules"
+    Invoke-Expression "$command $($basePath)/dist/tasks/rnh_wit_buildnumber_pipelinetask/node_modules"        
 }
 
 function UpdateTfxCli() {

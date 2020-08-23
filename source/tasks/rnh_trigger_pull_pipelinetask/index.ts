@@ -1,5 +1,6 @@
 import tl = require('azure-pipelines-task-lib/task');
 import httpc = require('typed-rest-client/HttpClient');
+
 let serviceValue: string;
 let spaceValue: string;
 let projectValue: string;
@@ -13,6 +14,7 @@ let minorVersionValue: string;
 let buildVersionValue: string;
 let revisionVersionValue: string;
 let preReleaseLabelValue: string;
+let ignoreIfExistsValue: string;
 let createOnNotFoundValue: string;
 let versionNumberValue: string;
 let versionNumberExpressionValue: string;
@@ -21,6 +23,7 @@ var endPointUrlValue: any;
 var endPointApiKey: any;
 let isDebugOutput: boolean;
 const testVersionFormatExpression: string = "^(\\d+\\.)?(\\*|\\d+)$|^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$|^(\\d+\\.)?(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$";
+
 async function run() {
     try {
         serviceValue = tl.getInput('ReleaseNotesHubService', true);
@@ -35,7 +38,8 @@ async function run() {
         minorVersionValue = tl.getInput('withVersion_minorVersion', false);
         buildVersionValue = tl.getInput('withVersion_buildVersion', false);
         revisionVersionValue = tl.getInput('withVersion_revisionVersion', false);
-        preReleaseLabelValue = tl.getInput('preReleaseLabel', false);        
+        preReleaseLabelValue = tl.getInput('preReleaseLabel', false);      
+        ignoreIfExistsValue = tl.getInput('ignoreIfExists', true);           
         createOnNotFoundValue = tl.getInput('createOnNotFound', true);   
         versionNumberValue = tl.getInput('withVersionVariable_versionNumber', false);
         versionNumberExpressionValue = tl.getInput('withVersionVariable_versionNumberExpression', false);     
@@ -69,6 +73,7 @@ async function run() {
             console.log('withVersion_buildVersion', buildVersionValue);          
             console.log('withVersion_revisionVersion', revisionVersionValue);
             console.log('preReleaseLabel', preReleaseLabelValue);
+            console.log('ignoreIfExists', ignoreIfExistsValue);              
             console.log('createOnNotFound', createOnNotFoundValue);   
             console.log('withVersionVariable_versionNumber', versionNumberValue);      
             console.log('withVersionVariable_versionNumberExpression', versionNumberExpressionValue);   
@@ -94,6 +99,7 @@ async function run() {
     }
     catch (err) {
         if (isDebugOutput){
+            console.log("An exception was thrown while triggering a ReleaseNotesHub Pull.");
             console.log('Error', err);
         }
         tl.setResult(tl.TaskResult.Failed, err.message);
@@ -174,6 +180,7 @@ async function runWithVersionVariable() {
         data += ",\"description\": \"" + releaseDescriptionValue + "\"";
     }
     data += ",\"publish\":" + publishValue;
+    data += ",\"ignoreIfExists\":" + ignoreIfExistsValue;
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
     data += ",\"mergePoint\": \"" + "1" + "\"";      
@@ -223,6 +230,7 @@ async function runWithVersion() {
         data += ",\"description\": \"" + releaseDescriptionValue + "\"";
     }
     data += ",\"publish\":" + publishValue;
+    data += ",\"ignoreIfExists\":" + ignoreIfExistsValue;   
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
     data += ",\"mergePoint\": \"" + "1" + "\"";    
