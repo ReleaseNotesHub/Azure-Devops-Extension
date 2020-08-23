@@ -23,7 +23,7 @@ Options include:
 This extension adds the following tasks:
 - [Trigger ReleaseNotesHub Pull](#TriggerPull)
 - [Trigger ReleaseNotesHub Publish Release](#TriggerPublish)
-- [Update BuildNumber Field](#UpdateBuildNumber)
+- [Update BuildNumber Field on WorkItems associated with ChangeSet](#UpdateBuildNumber)
 
 ### <a id="TriggerPull"></a>Trigger ReleaseNotesHub Pull
 Options include:
@@ -93,9 +93,9 @@ Options include:
   - Revision: Revision for Release.   
   - Semantic Label: Sematic pre-release Label.
 
-  ### <a id="UpdateBuildNumber"></a>Update BuildNumber Field
+  ### <a id="UpdateBuildNumber"></a>Update BuildNumber Field on WorkItems associated with ChangeSet
   <a href="https://imgur.com/8rPwhPH"><img src="https://i.imgur.com/8rPwhPH.png" title="source: imgur.com" width="40%"/></a>
-  
+
   Options include:
   - WorkItem Type
   - WorkItem State
