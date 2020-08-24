@@ -1,7 +1,7 @@
 ﻿{
     "id": "8caea22b-4686-45c2-9e18-7253b313f844",
     "name": "rnh_wit_buildnumber_pipelinetask",
-    "friendlyName": "Update BuildNumber Field.",
+    "friendlyName": "Update BuildNumber Field",
     "description": "Update WorkItem field with latest associated build number.",
     "helpUrl": "https://www.releasenoteshub.com",
     "helpMarkDown": "set-by-pack.ps1",

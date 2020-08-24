@@ -1,7 +1,7 @@
 ﻿{
     "id": "1111e6c5-dfa9-4b18-a8f3-e1fe1207682e",
     "name": "rnh_trigger_pull_pipelinetask",
-    "friendlyName": "Trigger ReleaseNotesHub Pull.",
+    "friendlyName": "Trigger ReleaseNotesHub Pull",
     "description": "Trigger ReleaseNotesHub pull for release notes.",
     "helpUrl": "https://www.releasenoteshub.com",
     "helpMarkDown": "set-by-pack.ps1",
