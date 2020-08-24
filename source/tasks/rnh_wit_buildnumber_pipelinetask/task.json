@@ -14,7 +14,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 3
+        "Patch": 4
     },
     "demands": [],
     "minimumAgentVersion": "2.115.0", 
@@ -85,14 +85,14 @@
         {
             "target": "workItemType",
             "endpointId": "tfs:teamfoundation",
-            "endpointURL": "{{endpoint.url}}/{{system.teamProject}}/_apis/wit/workitemtypes?api-version=4.1",
+            "endpointURL": "{{endpoint.url}}/{{system.teamProject}}/_apis/wit/workitemtypes",
             "resultSelector": "jsonpath:$.value[*]",
             "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
         },
         {
           "target": "workItemStatus",
           "endpointId": "tfs:teamfoundation",
-          "endpointURL": "{{endpoint.url}}/{{system.teamProject}}/_apis/wit/workitemtypes/$(workItemType)/states?api-version=4.1-preview.1",
+          "endpointURL": "{{endpoint.url}}/{{system.teamProject}}/_apis/wit/workitemtypes/$(workItemType)/states",
           "resultSelector": "jsonpath:$.value[*]",
           "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
       }

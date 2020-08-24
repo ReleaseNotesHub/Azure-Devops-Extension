@@ -12,4 +12,21 @@ npm config delete script-shell
 
 npm install --no-save
 npm run build
-./pack.ps1 -environment test -version "x.x.x"
+./pack.ps1 -environment localhost -version "x.x.x"
+
+
+
+
+
+Param(
+   [string]$tfsurl = "https://tfs.e5workflow.com/tfs", 
+   [string]$publisher = "ReleaseNotesHub",
+   [string]$extensionId = "rnh-pipelinetasks-localtest",
+   [string]$user = "patrick",
+   [string]$token = "e6qkyq7t2bi47hvwjfa4vogjehlurhyogkfdsz7nrlhtwswpgjzq"
+)  
+# Base64-encodes the Personal Access Token (PAT) appropriately
+$base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $user,$token)))
+
+$baseUrl = "$tfsurl/_apis/gallery/publishers/$publisher/extensions/$($extensionId)?api-version=3.2-preview.2"           
+$response = (Invoke-RestMethod -Uri $baseUrl -Method Delete -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)})
