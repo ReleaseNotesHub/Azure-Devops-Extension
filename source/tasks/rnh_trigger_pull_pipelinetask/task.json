@@ -14,7 +14,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 4
+        "Patch": 16
     },
     "demands": [],
     "minimumAgentVersion": "2.115.0", 
@@ -50,7 +50,7 @@
             "type": "pickList",
             "label": "Project",
             "required": true,
-            "helpMarkDown": "Select the Project.",
+            "helpMarkDown": "Select Project.",
             "properties": {
               "EditableOptions": "True"
             }
@@ -90,7 +90,7 @@
           "label": "Version Number",
           "defaultValue": "$(Build.BuildNumber)",
           "required": false,
-          "helpMarkDown": "Version number to be used. This can be extracted from the build name .e.g. 'Build 2019.1.20-rc'.",
+          "helpMarkDown": "Version number to be used. This can be extracted from the build name .e.g. Build 2019.1.20-rc.",
           "visibleRule": "releaseOptions=WithVersionVariable"
         },  
         {
@@ -99,7 +99,7 @@
           "label": "Regex Filter to extract build number",
           "defaultValue": "\\d+\\.\\d+\\.\\d+\\.\\d+",
           "required": false,
-          "helpMarkDown": "Regular expression filter to get build number from the build name .e.g. '\\d+\\.\\d+\\.\\d+'.",
+          "helpMarkDown": "Regular expression filter to get build number from the build name .e.g. \\d+\\.\\d+\\.\\d+.",
           "visibleRule": "releaseOptions=WithVersionVariable"
         },         
         {
@@ -153,7 +153,7 @@
             "label": "Regex Filter to extract Semantic Label",
             "defaultValue": "((-)(.*))",
             "required": false,
-            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '((-)(.*))",
+            "helpMarkDown": "Regular expression filter to get label from the build name .e.g. ((-)(.*))",
             "visibleRule": "releaseOptions=WithVersionVariable"
           },
           {
@@ -191,7 +191,47 @@
             "required": false,
             "helpMarkDown": "Release Description.",
             "visibleRule": "createOnNotFound=true"
-          }                                         
+          },
+          {
+              "name": "releaseAssociationOptions",
+              "type": "radio",
+              "label": "Associated Releases",
+              "required": false,
+              "defaultValue": "SelectRelease",
+              "options": {
+                "SelectRelease": "Select a Release.",  
+                "ListReleases": "List one or more Releases."  
+              }
+          },
+          {
+            "name": "associatedReleases",
+            "type": "multiLine",
+            "label": "Associated Releases",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Associated Releases as JSON .e.g. [{'AssociatedProjectId':'4b0c96c8-25e0-46cc-8cd9-ccf97968f5c6','AssociatedReleaseVersion':'1.2.5.2'}]",
+            "visibleRule": "releaseAssociationOptions=ListReleases"
+          },
+          {
+            "name": "associatedProject",
+            "type": "pickList",
+            "label": "Associated Project",
+            "required": true,
+            "helpMarkDown": "Select associated Project.",
+            "properties": {
+              "EditableOptions": "True"
+            },
+            "visibleRule": "releaseAssociationOptions=SelectRelease"
+          },
+          {
+            "name": "associatedReleaseVersion",
+            "type": "string",
+            "label": "Associated Version",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Associated Release Version.",
+            "visibleRule": "releaseAssociationOptions=SelectRelease"
+          }                                     
       ],
       "dataSourceBindings": [        
         {
@@ -203,12 +243,21 @@
         {
           "target": "project",
           "endpointId": "$(ReleaseNotesHubService)",
-          "dataSourceName": "ProjectsForSpace",
+          "dataSourceName": "ProjectsForSpace",  
+          "resultTemplate": "{\"Value\":\"{{{id}}}\",\"DisplayValue\":\"{{{name}}}\"}",
           "parameters": {
             "SpaceId": "$(space)"
-          },   
-          "resultTemplate": "{\"Value\":\"{{{id}}}\",\"DisplayValue\":\"{{{name}}}\"}"
-        }         
+          }
+        },          
+        {
+          "target": "associatedProject",
+          "endpointId": "$(ReleaseNotesHubService)",
+          "dataSourceName": "AssociatedProjects", 
+          "resultTemplate": "{\"Value\":\"{{{associatedSpaceProjectId}}}\",\"DisplayValue\":\"{{{associatedProjectName}}}\"}",
+            "parameters": {
+              "ProjectId": "$(project)"
+            }
+        }          
       ],    
     "execution": {
         "Node": {

@@ -1,12 +1,12 @@
 ## Welcome to ReleaseNotesHub
 ### Release Your Potential
 ReleaseNotesHub is a SaaS solution that automates the generation and publication of release notes.
-RnHub has reinvented the way in which release notes are captured, stored and made available to the customer.
-It does'nt produce a static document or wiki article for a release. Instead, RnHub is a search engine for release notes. The platform allows the consumer to search, discover and explore changes made to an app, service or software solution.
+ReleaseNotesHub has reinvented the way in which release notes are captured, stored and made available to the customer.
+It does'nt produce a static document or wiki article for a release. Instead, ReleaseNotesHub is a search engine for release notes. The platform allows the consumer to search, discover and explore changes made to an app, service or software solution.
 
 <a href="https://imgur.com/osp2Dhl"><img src="https://i.imgur.com/osp2Dhl.png" title="source: imgur.com" width="30%"/></a>
 
-With RnHub the creation of Release Notes becomes another step within your CI/CD pipeline. With the appropriate permission, RnHub can pull or receive content from any ticket or task management system which can then be aggregated, sanitised and published via the RnHub platform. RnHub can pull content from many systems including TFS, Azure Devops, GitHub, Jira and Asana.
+With ReleaseNotesHub the creation of Release Notes becomes another step within your CI/CD pipeline. With the appropriate permission, ReleaseNotesHub can pull or receive content from any ticket or task management system which can then be aggregated, sanitised and published via the ReleaseNotesHub platform. ReleaseNotesHub can pull content from many systems including TFS, Azure Devops, GitHub, Jira and Asana.
 
 <a href="https://imgur.com/6PStpRa"><img src="https://i.imgur.com/6PStpRa.png" title="source: imgur.com" width="30%"/></a>
 
@@ -33,7 +33,7 @@ Options include:
   - Publish Release: When enabled, release is created and then published.
   - Merge Release: Merge notes from previous merge point or published release.
 
-#### Pull Release Notes for latest Release in RnHub
+#### Pull Release Notes for latest Release in ReleaseNotesHub
 <a href="https://imgur.com/oCXYw7f"><img src="https://i.imgur.com/oCXYw7f.png" title="source: imgur.com" width="40%"/></a>
 
 #### Pull Release notes for BuildNumber

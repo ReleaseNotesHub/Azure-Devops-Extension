@@ -43,7 +43,7 @@ async function run() {
 
         let versionNumber: string = versionNumberVariableValue;
 
-        if (versionNumberExpressionValue !== null && versionNumberVariableValue != null) {
+        if (versionNumberExpressionValue && versionNumberVariableValue) {
             var versionExp = new RegExp(versionNumberExpressionValue);
             var match = versionExp.exec(versionNumber);
             if (match !== null && match.length >= 1)

@@ -48,10 +48,10 @@ async function run() {
         {
             console.log('ReleaseNotesHub Step is running is debug mode.');
             console.log('isDebugOutput', isDebugOutput);   
-            console.log('serviceValue', serviceValue);      
-            console.log('spaceValue', spaceValue);        
-            console.log('projectValue', projectValue);             
-            console.log('publishOptionsValue', publishOptionsValue);          
+            console.log('service', serviceValue);      
+            console.log('space', spaceValue);        
+            console.log('project', projectValue);             
+            console.log('publishOptions', publishOptionsValue);          
             console.log('withVersion_majorVersion', majorVersionValue);    
             console.log('withVersion_minorVersion', minorVersionValue);         
             console.log('withVersion_buildVersion', buildVersionValue);          
@@ -60,7 +60,7 @@ async function run() {
             console.log('withVersionVariable_versionNumber', versionNumberValue);      
             console.log('withVersionVariable_versionNumberExpression', versionNumberExpressionValue);   
             console.log('withVersionVariable_labelExpression', labelExpressionValue);    
-            console.log('endPointUrlValue', endPointUrlValue);  
+            console.log('endPointUrl', endPointUrlValue);  
             console.log('endPointApiKey', endPointApiKey);  
 
             for (let key in endPointAuthValue.parameters) {
@@ -87,7 +87,7 @@ async function run() {
 
 async function runWithVersionVariable() {
     if (isDebugOutput){
-        console.log('Executing RnHub Release Publish using BuildNumber.');
+        console.log('Executing ReleaseNotesHub Release Publish using BuildNumber.');
     }
     if (versionNumberValue == null) {
         throw new Error("Version Number not set. This is a required value.");
@@ -95,7 +95,7 @@ async function runWithVersionVariable() {
 
     let versionNumber: string = versionNumberValue;
 
-    if (versionNumberExpressionValue !== null) {
+    if (versionNumber && versionNumberExpressionValue) {
         var versionExp = new RegExp(versionNumberExpressionValue);
         var match = versionExp.exec(versionNumber);
         if (match !== null && match.length >= 1)
@@ -113,7 +113,7 @@ async function runWithVersionVariable() {
 
     let versionLabel: string = preReleaseLabelValue; 
     
-    if (labelExpressionValue !== null) {
+    if (versionLabel && labelExpressionValue) {
         var versionExp = new RegExp(labelExpressionValue);
         var match = versionExp.exec(versionLabel);
         if (match !== null && match.length >= 4)
@@ -157,7 +157,7 @@ async function runWithVersionVariable() {
 
 async function runWithVersion() {
     if (isDebugOutput){
-        console.log('Executing RnHub Release Publish using Version.');
+        console.log('Executing ReleaseNotesHub Release Publish using Version.');
     }
     if (majorVersionValue == null) {
         throw new Error("Major Release Version not set. This is a required value.");

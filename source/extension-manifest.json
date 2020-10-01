@@ -85,7 +85,7 @@
               "url": {
                 "displayName": "Server Url",
                 "value": "https://api.releasenoteshub.com",
-                "isVisible": "false",
+                "isVisible": "true",
                 "helpText": "The ReleaseNotesHub server Url .e.g. 'https://api.releasenoteshub.com'"
               },                
               "dataSources": [
@@ -98,7 +98,12 @@
                     "name": "ProjectsForSpace",
                     "endpointUrl": "{{endpoint.url}}api/projects/getbyspace/$(space)?page=1",
                     "resultSelector": "jsonpath:$.results[*]"
-                  }
+                },
+                {
+                    "name": "AssociatedProjects",
+                    "endpointUrl": "{{endpoint.url}}api/projectassociations/getbyproject/$(project)?page=1",
+                    "resultSelector": "jsonpath:$.results[*]"
+                }
               ],  
               "authenticationSchemes": [
                 {

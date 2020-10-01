@@ -19,6 +19,10 @@ let createOnNotFoundValue: string;
 let versionNumberValue: string;
 let versionNumberExpressionValue: string;
 let labelExpressionValue: string;
+let releaseAssociationOptionsValue: string;
+let associatedReleasesValue: string;
+let associatedProjectValue: string;
+let associatedReleaseVersionValue: string;
 var endPointUrlValue: any;
 var endPointApiKey: any;
 let isDebugOutput: boolean;
@@ -43,7 +47,13 @@ async function run() {
         createOnNotFoundValue = tl.getInput('createOnNotFound', true);   
         versionNumberValue = tl.getInput('withVersionVariable_versionNumber', false);
         versionNumberExpressionValue = tl.getInput('withVersionVariable_versionNumberExpression', false);     
-        labelExpressionValue = tl.getInput('withVersionVariable_labelExpression', false);     
+        labelExpressionValue = tl.getInput('withVersionVariable_labelExpression', false);   
+        
+        releaseAssociationOptionsValue = tl.getInput('releaseAssociationOptions', false);   
+        associatedReleasesValue = tl.getInput('associatedReleases', false);   
+        associatedProjectValue = tl.getInput('associatedProject', false);   
+        associatedReleaseVersionValue = tl.getInput('associatedReleaseVersion', false);   
+        
         endPointUrlValue = tl.getEndpointUrl(serviceValue, true);
         var endPointAuthValue = tl.getEndpointAuthorization(serviceValue, true);
         endPointApiKey = endPointAuthValue.parameters["apitoken"];
@@ -60,14 +70,14 @@ async function run() {
         {
             console.log('ReleaseNotesHub Step is running is debug mode.');
             console.log('isDebugOutput', isDebugOutput);   
-            console.log('serviceValue', serviceValue);      
-            console.log('spaceValue', spaceValue);        
-            console.log('projectValue', projectValue);       
-            console.log('publishValue', publishValue);     
-            console.log('mergeValue', mergeValue);         
-            console.log('releaseOptionsValue', releaseOptionsValue);       
-            console.log('releaseNameValue', releaseNameValue);       
-            console.log('releaseDescriptionValue', releaseDescriptionValue);        
+            console.log('ReleaseNotesHubService', serviceValue);      
+            console.log('space', spaceValue);        
+            console.log('project', projectValue);       
+            console.log('publish', publishValue);     
+            console.log('merge', mergeValue);         
+            console.log('releaseOptions', releaseOptionsValue);       
+            console.log('releaseName', releaseNameValue);       
+            console.log('releaseDescription', releaseDescriptionValue);        
             console.log('withVersion_majorVersion', majorVersionValue);    
             console.log('withVersion_minorVersion', minorVersionValue);         
             console.log('withVersion_buildVersion', buildVersionValue);          
@@ -77,8 +87,14 @@ async function run() {
             console.log('createOnNotFound', createOnNotFoundValue);   
             console.log('withVersionVariable_versionNumber', versionNumberValue);      
             console.log('withVersionVariable_versionNumberExpression', versionNumberExpressionValue);   
-            console.log('withVersionVariable_labelExpression', labelExpressionValue);    
-            console.log('endPointUrlValue', endPointUrlValue);  
+            console.log('withVersionVariable_labelExpression', labelExpressionValue);   
+            
+            console.log('releaseAssociationOptions', releaseAssociationOptionsValue);   
+            console.log('associatedReleases', associatedReleasesValue);   
+            console.log('associatedProject', associatedProjectValue);   
+            console.log('associatedReleaseVersion', associatedReleaseVersionValue);   
+
+            console.log('endPointUrl', endPointUrlValue);  
             console.log('endPointApiKey', endPointApiKey);  
 
             for (let key in endPointAuthValue.parameters) {
@@ -108,7 +124,7 @@ async function run() {
 
 async function runWithVersionVariable() {
     if (isDebugOutput){
-        console.log('Executing RnHub Release Pull using BuildNumber.');
+        console.log('Executing ReleaseNotesHub Release Pull using BuildNumber.');
     }
     if (versionNumberValue == null) {
         throw new Error("Version Number not set. This is a required value.");
@@ -116,7 +132,7 @@ async function runWithVersionVariable() {
 
     let versionNumber: string = versionNumberValue;
 
-    if (versionNumberExpressionValue !== null && versionNumberValue != null) {
+    if (versionNumberValue && versionNumberExpressionValue) {
         var versionExp = new RegExp(versionNumberExpressionValue);
         var match = versionExp.exec(versionNumber);
         if (match !== null && match.length >= 1)
@@ -134,7 +150,7 @@ async function runWithVersionVariable() {
 
     let versionLabel: string = preReleaseLabelValue; 
     
-    if (labelExpressionValue !== null) {
+    if (versionLabel && labelExpressionValue) {
         var versionExp = new RegExp(labelExpressionValue);
         var match = versionExp.exec(versionLabel);
         if (match !== null && match.length >= 4)
@@ -161,6 +177,8 @@ async function runWithVersionVariable() {
         throw new Error("Each component of Version must be numeric.");
     }
 
+    let associations: string = getAssociationsAsJson();
+
     let url: string = endPointUrlValue + "api/pull/PullVersion/" + projectValue
 
     let data: string = "{";    
@@ -184,13 +202,14 @@ async function runWithVersionVariable() {
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
     data += ",\"mergePoint\": \"" + "1" + "\"";      
+    if (associations !== null) data += "," + getAssociationsAsJson();   
     data += "}";      
     await runHttpPost(url, data);
 }
 
 async function runWithVersion() {
     if (isDebugOutput){
-        console.log('Executing RnHub Release Pull using Version.');
+        console.log('Executing ReleaseNotesHub Release Pull using Version.');
     }
     if (majorVersionValue == null) {
         throw new Error("Major Release Version not set. This is a required value.");
@@ -212,6 +231,8 @@ async function runWithVersion() {
         throw new Error("Release Revision must be numeric.");
     } 
 
+    let associations: string = getAssociationsAsJson();
+
     let url: string = endPointUrlValue + "api/pull/PullVersion/" + projectValue
     let data: string = "{";    
     data += "\"version\": {";
@@ -229,18 +250,35 @@ async function runWithVersion() {
     if (releaseDescriptionValue !== null) {
         data += ",\"description\": \"" + releaseDescriptionValue + "\"";
     }
+
     data += ",\"publish\":" + publishValue;
     data += ",\"ignoreIfExists\":" + ignoreIfExistsValue;   
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
-    data += ",\"mergePoint\": \"" + "1" + "\"";    
+    data += ",\"mergePoint\": \"" + "1" + "\"";   
+    if (associations !== null) data += "," + getAssociationsAsJson();     
     data += "}";      
     await runHttpPost(url, data);
 }
 
+function getAssociationsAsJson(): string
+{
+    if (releaseAssociationOptionsValue == 'ListReleases'){
+        return "\"Associations\" : " + associatedReleasesValue;
+    }
+    else if (releaseAssociationOptionsValue == 'SelectRelease'){
+        if (associatedProjectValue !== null && associatedReleaseVersionValue !== null)
+        {
+            let data: string = "\"Associations\" : [{\"AssociatedProjectId\": \"" + associatedProjectValue + "\"" + ",\"AssociatedReleaseVersion\": \"" + associatedReleaseVersionValue + "\"" + "}]";  
+            return data;
+        }
+    }
+    return "";
+}
+
 async function runLatestRelease() {
     if (isDebugOutput){
-        console.log('Executing RnHub Pull for latest Release.');
+        console.log('Executing ReleaseNotesHub Pull for latest Release.');
     }
     let url: string  = endPointUrlValue + "api/pull/PullLatestRelease/" + projectValue
     let data: string = "{";    
