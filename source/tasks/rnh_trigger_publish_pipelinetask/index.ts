@@ -13,6 +13,7 @@ let preReleaseLabelValue: string;
 let versionNumberValue: string;
 let versionNumberExpressionValue: string;
 let labelExpressionValue: string;
+let ignoreOnReleaseNotFoundValue: boolean;
 var endPointUrlValue: any;
 var endPointApiKey: any;
 let isDebugOutput: boolean;
@@ -31,10 +32,14 @@ async function run() {
         preReleaseLabelValue = tl.getInput('preReleaseLabel', false);        
         versionNumberValue = tl.getInput('withVersionVariable_versionNumber', false);
         versionNumberExpressionValue = tl.getInput('withVersionVariable_versionNumberExpression', false);     
-        labelExpressionValue = tl.getInput('withVersionVariable_labelExpression', false);     
+        labelExpressionValue = tl.getInput('withVersionVariable_labelExpression', false); 
         endPointUrlValue = tl.getEndpointUrl(serviceValue, true);
         var endPointAuthValue = tl.getEndpointAuthorization(serviceValue, true);
         endPointApiKey = endPointAuthValue.parameters["apitoken"];
+
+        let ignoreOnReleaseNotFound = tl.getInput('ignoreOnReleaseNotFound', false);  
+        ignoreOnReleaseNotFound = ignoreOnReleaseNotFound || "false";
+        ignoreOnReleaseNotFoundValue = ignoreOnReleaseNotFound.toLowerCase() === "true";        
 
         let debugOutput = tl.getVariable("system.debug");
         debugOutput = debugOutput || "false";
@@ -60,6 +65,7 @@ async function run() {
             console.log('withVersionVariable_versionNumber', versionNumberValue);      
             console.log('withVersionVariable_versionNumberExpression', versionNumberExpressionValue);   
             console.log('withVersionVariable_labelExpression', labelExpressionValue);    
+            console.log('ignoreOnReleaseNotFound', ignoreOnReleaseNotFoundValue);     
             console.log('endPointUrl', endPointUrlValue);  
             console.log('endPointApiKey', endPointApiKey);  
 
@@ -216,7 +222,7 @@ async function runHttpPost(url: string, data: string) {
         console.log('Response Body', body); 
     }    
 
-    if (result.message.statusCode !== 200){
+    if (result.message.statusCode !== 200 && !ignoreOnReleaseNotFoundValue){
         throw new Error("Call to ReleaseNotesHub failed.");
     }
 }

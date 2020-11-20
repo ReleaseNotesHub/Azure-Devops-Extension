@@ -14,7 +14,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 5
+        "Patch": 17
     },
    
     "instanceNameFormat": "Trigger ReleaseNotesHub Publish",
@@ -130,7 +130,15 @@
             "required": false,
             "helpMarkDown": "Regular expression filter to get label from the build name .e.g. '((-)(.*))",
             "visibleRule": "publishOptions=WithVersionVariable"
-          }                                    
+          }, 
+          {
+            "name": "ignoreOnReleaseNotFound",
+            "type": "boolean",
+            "label": "Ignore error if Release not found",
+            "defaultValue": "false",
+            "required": false,
+            "helpMarkDown": "Do not fail Build if Release not found."
+        }
       ],
       "dataSourceBindings": [        
         {

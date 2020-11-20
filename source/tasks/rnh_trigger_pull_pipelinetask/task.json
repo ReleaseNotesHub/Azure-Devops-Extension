@@ -14,14 +14,14 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 16
+        "Patch": 17
     },
     "demands": [],
     "minimumAgentVersion": "2.115.0", 
     "groups": [
         {
-          "name": "versiongroup",
-          "displayName": "Release Version",
+          "name": "associatedReleasesGroup",
+          "displayName": "Associated Releases",
           "isExpanded": false
         }
       ],       
@@ -197,6 +197,7 @@
               "type": "radio",
               "label": "Associated Releases",
               "required": false,
+              "groupName": "associatedReleasesGroup",
               "defaultValue": "SelectRelease",
               "options": {
                 "SelectRelease": "Select a Release.",  
@@ -209,6 +210,7 @@
             "label": "Associated Releases",
             "defaultValue": "",
             "required": false,
+            "groupName": "associatedReleasesGroup",         
             "helpMarkDown": "Associated Releases as JSON .e.g. [{'AssociatedProjectId':'4b0c96c8-25e0-46cc-8cd9-ccf97968f5c6','AssociatedReleaseVersion':'1.2.5.2'}]",
             "visibleRule": "releaseAssociationOptions=ListReleases"
           },
@@ -216,7 +218,8 @@
             "name": "associatedProject",
             "type": "pickList",
             "label": "Associated Project",
-            "required": true,
+            "required": false,
+            "groupName": "associatedReleasesGroup",    
             "helpMarkDown": "Select associated Project.",
             "properties": {
               "EditableOptions": "True"
@@ -229,6 +232,7 @@
             "label": "Associated Version",
             "defaultValue": "",
             "required": false,
+            "groupName": "associatedReleasesGroup",  
             "helpMarkDown": "Associated Release Version.",
             "visibleRule": "releaseAssociationOptions=SelectRelease"
           }                                     
