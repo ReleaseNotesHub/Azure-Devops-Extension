@@ -201,7 +201,7 @@ async function runWithVersionVariable() {
     data += ",\"ignoreIfExists\":" + ignoreIfExistsValue;
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
-    data += ",\"mergePoint\": \"" + "1" + "\"";      
+    data += ",\"mergePoint\": \"" + "0" + "\"";      
     if (associations !== null) data += "," + getAssociationsAsJson();   
     data += "}";      
     await runHttpPost(url, data);
@@ -255,7 +255,7 @@ async function runWithVersion() {
     data += ",\"ignoreIfExists\":" + ignoreIfExistsValue;   
     data += ",\"createOnNotFound\":" + createOnNotFoundValue;
     data += ",\"merge\":" + mergeValue;    
-    data += ",\"mergePoint\": \"" + "1" + "\"";   
+    data += ",\"mergePoint\": \"" + "0" + "\"";   
     if (associations !== null) data += "," + getAssociationsAsJson();     
     data += "}";      
     await runHttpPost(url, data);
@@ -284,7 +284,7 @@ async function runLatestRelease() {
     let data: string = "{";    
     data += "{\"publish\":" + publishValue + "}";
     data += ",\"merge\":" + mergeValue;    
-    data += ",\"mergePoint\":" + "1";      
+    data += ",\"mergePoint\":" + "0";      
     data += "}";      
     await runHttpPost(url, data);  
 }

@@ -9,10 +9,15 @@ https://docs.microsoft.com/en-us/rest/api/azure/devops/wit/work%20item%20types/l
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 npm config set script-shell "C:\Program Files\git\bin\bash.exe"
 npm config delete script-shell
+npm install -g tfx-cli
+
+https://golang.org/doc/install
+ctrl+shift+x - INSTALL go
 
 npm install --no-save
 npm run build
-./pack.ps1 -environment production -version "2.0.17"
+./pack.ps1 -environment production -version "2.0.18"
+Update version in all task.json files
 
 
 
